@@ -35,6 +35,56 @@ Run that in this folder. That is the whole deployment.
 
 ---
 
+## Link Apple Watch with a Shortcut (no server, works today)
+
+A web app cannot read Apple Health directly — only native iOS apps can. But a Shortcut
+on the iPhone *can* read it, and can pass the figures to the app in the web address.
+No server, no database, no cost.
+
+The app reads these parameters and saves them:
+
+    https://shirtpapasg.github.io/Exercise_app_V1/?move=520&exercise=35&stand=9&steps=8400&resting=1680
+
+Optional, repeatable — `workout=Name|minutes|avgHeartRate|kcal`:
+
+    &workout=Outdoor%20run|26|148|312&workout=Strength%20training|18|112|96
+
+The address is cleared straight after importing, so refreshing never re-applies old
+figures, and the app labels the data **Shortcuts** rather than **Demo data** so you can
+always tell real numbers from the built-in sample.
+
+### Building the Shortcut (about 10 minutes, once)
+
+On the iPhone, open **Shortcuts → + → Add Action**:
+
+1. **Find All Health Samples Where** — Type: *Active Energy*, Date: *Today*,
+   then **Calculate Statistics → Sum**. Tap the result and rename the variable `Move`.
+2. Repeat for **Exercise Minutes** (`Exercise`), **Steps** (`Steps`) and
+   **Resting Energy** (`Resting`).
+3. Add **Text** and paste, substituting your variables where shown:
+
+       https://shirtpapasg.github.io/Exercise_app_V1/?move=[Move]&exercise=[Exercise]&steps=[Steps]&resting=[Resting]
+
+4. Add **Open URLs** and pass it that Text.
+5. Name it *Send to Plate League* and tap Done.
+
+Then **Automation → + → Time of Day → 21:00 → Run Immediately** (turn *Ask Before
+Running* off) so it fires every evening on its own.
+
+Numbers must be whole — add **Round** after each Sum if you get decimals.
+
+### Sharing it with your ten people
+
+Once your Shortcut works, tap the share button inside Shortcuts and send the link.
+Each person taps it, allows Health access once, and sets their own evening automation.
+Per-person setup is the trade-off for needing no server.
+
+If that becomes tiresome at more than ten people, **Health Auto Export** (~£5 on the
+App Store) does the same thing automatically to a server endpoint — but that needs the
+Supabase step below first.
+
+---
+
 ## What works right now, with no server
 
 - Photo logging, portion editing, leftovers
