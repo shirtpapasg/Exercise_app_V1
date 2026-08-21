@@ -2546,6 +2546,7 @@ class Component extends DCLogic {
     this._onResize();
     window.addEventListener('resize', this._onResize);
     this.applyTheme(this.state.theme);
+    this.importHealthFromUrl();
     this.bindIdle();
     this.later(() => this.scheduleReminders(), 400);
     this.restoreTimer();
@@ -2709,6 +2710,45 @@ class Component extends DCLogic {
   myRank() { const r = this.ranked(); return r.findIndex(x=>x.id==='me')+1; }
   // Relative time with rollover. Unbounded minutes ("270m ago") read as a bug on a card
   // whose whole job is to look trustworthy.
+  // ?move=520&exercise=35&stand=9&steps=8400&resting=1680&workout=Outdoor+run|26|148|312
+  // Values are trusted because they came from the user's own device via Shortcuts.
+  importHealthFromUrl() {
+    let q;
+    try { q = new URLSearchParams(location.search); } catch(e) { return false; }
+    const num = (k) => { const v = q.get(k); if (v === null) return null;
+      const n = Math.round(Number(v)); return isFinite(n) && n >= 0 ? n : null; };
+    const move = num('move'), exercise = num('exercise'), stand = num('stand'),
+      steps = num('steps'), resting = num('resting');
+    if (move === null && exercise === null && steps === null && resting === null) return false;
+    // workout=Name|minutes|avgHr|kcal, repeatable
+    const glyphFor = (n) => { const l = n.toLowerCase();
+      if (/run|jog/.test(l)) return '🏃'; if (/walk|hike/.test(l)) return '🚶';
+      if (/cycl|bike|ride/.test(l)) return '🚴'; if (/swim/.test(l)) return '🏊';
+      if (/row/.test(l)) return '🚣'; if (/strength|weight|lift/.test(l)) return '🏋';
+      if (/yoga|pilates|stretch/.test(l)) return '🧘'; return '⚡'; };
+    const workouts = q.getAll('workout').map(raw => {
+      const p = String(raw).split('|');
+      const name = (p[0] || 'Workout').trim();
+      return { name, glyph: glyphFor(name), mins: Math.max(0, Math.round(Number(p[1]) || 0)),
+        hr: Math.max(0, Math.round(Number(p[2]) || 0)), kcal: Math.max(0, Math.round(Number(p[3]) || 0)) };
+    }).filter(w => w.mins > 0 || w.kcal > 0);
+    this.setState(st => ({ health: Object.assign({}, st.health, {
+      connected: true, real: true, source: 'Apple Watch · Shortcuts', linking: false,
+      move: move !== null ? move : st.health.move,
+      exercise: exercise !== null ? exercise : st.health.exercise,
+      stand: stand !== null ? stand : st.health.stand,
+      steps: steps !== null ? steps : st.health.steps,
+      resting: resting !== null ? resting : st.health.resting,
+      workouts: workouts.length ? workouts : st.health.workouts,
+      syncedAt: Date.now() }) }), () => {
+      this.persist();
+      this.fire('Health imported', (move !== null ? move + ' kcal active' : 'Figures updated')
+        + (workouts.length ? ' · ' + workouts.length + ' workout' + (workouts.length > 1 ? 's' : '') : ''), '⌚', this.H.orange);
+      // Clear the query so a refresh cannot re-apply stale figures.
+      try { history.replaceState(null, '', location.pathname + location.hash); } catch(e) {}
+    });
+    return true;
+  }
   applyTheme(t) {
     try { document.body.setAttribute('data-theme', t === 'light' ? 'light' : 'dark'); } catch(e) {}
   }
@@ -4233,7 +4273,8 @@ class Component extends DCLogic {
           { name:'Exercise', r:64, v:Hh.exercise, g:Hh.exerciseGoal, color:this.H.ringEx, text:Hh.exercise+' / '+Hh.exerciseGoal+' min' },
           { name:'Stand', r:44, v:Hh.stand, g:Hh.standGoal, color:this.H.ringStand, text:Hh.stand+' / '+Hh.standGoal+' hr' } ];
         const mins = Math.max(1, Math.round((Date.now()-Hh.syncedAt)/60000));
-        return { off:false, on:true, source:Hh.source, synced: 'synced ' + this.ago(mins),
+        return { off:false, on:true, source:Hh.source, real:!!Hh.real,
+          synced: (Hh.real ? 'imported ' : 'demo · ') + this.ago(mins),
           rings: rd.map((x,i) => ({ r:x.r, color:x.color, name:x.name, text:x.text,
             dur: (1.0+i*0.16).toFixed(2)+'s',
             dash: Math.round(Math.min(1, x.v/x.g)*circ(x.r))+' '+Math.ceil(circ(x.r)) })),
@@ -4499,7 +4540,8 @@ class Component extends DCLogic {
           { label:'Daily calorie target', value:T.target.toLocaleString(), color:H.k, act:()=>this.setState({ screen:'onboard', ob:{ step:1 } }) },
           { label:'Protein floor', value:T.protein+'g', color:H.p, act:()=>this.setState({ screen:'onboard', ob:{ step:1 } }) },
           { label:'Freeze tokens', value:S.freezes+' left', color:H.c, act:()=>this.fire('Freeze token', 'Spend one to protect your streak on a day you cannot log.', '❄', H.c) },
-          { label:'Apple Watch & Health', value: S.health.connected ? 'Linked' : 'Not linked', color: S.health.connected ? this.H.orange : H.dim,
+          { label:'Apple Watch & Health', value: S.health.connected ? (S.health.real ? 'Shortcuts' : 'Demo data') : 'Not linked',
+            color: S.health.connected ? (S.health.real ? this.H.orange : H.dim) : H.dim,
             act:()=>{ if (S.health.connected) { this.setState(s=>({ health:Object.assign({}, s.health, { connected:false }) }), ()=>this.persist());
                 this.fire('Health unlinked', 'Back to an estimated activity level.', '◍', H.dim); }
               else { this.setState(s=>({ health:Object.assign({}, s.health, { connected:true, syncedAt:Date.now() }) }), ()=>this.persist());
