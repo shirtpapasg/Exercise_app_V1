@@ -3037,7 +3037,7 @@ class Component extends DCLogic {
     const b = this.mealBudget();
     const dish = (dishText || '').trim();
     this.setState(s => ({ plan: Object.assign({}, s.plan, { building:true, err:null }) }));
-    const ai = this.props.useRealAI !== false && typeof window !== 'undefined' && window.claude && window.claude.complete;
+    const ai = this.props.useRealAI !== false && this.hasModel();
     if (ai) {
       const ask = dish
         ? 'They intend to eat: "' + dish + '". Tell them what PORTION of it to take so it fits. Be concrete — grams, fractions of the plate, "leave the rice", "skip the mayo". If it cannot fit at any sensible portion, say so and set verdict "over", then give two better swaps.'
@@ -3048,7 +3048,7 @@ class Component extends DCLogic {
         + '\nReply with ONLY minified JSON, no prose, no code fence:\n'
         + '{"dish":"short name","verdict":"fits|tight|over","portion":"one specific sentence about how much to take","kcal":0,"protein":0,"after":"one short sentence on what it leaves","swaps":[{"what":"","why":""}]}';
       try {
-        const txt = await window.claude.complete({ max_tokens: 700,
+        const txt = await this.askModel({ max_tokens: 700,
           system: 'You are a blunt, numerate dietitian. You never moralise about food and never mention weight or bodies. You give portions, not lectures. Output JSON only.',
           messages: [{ role:'user', content: prompt }] });
         const j = JSON.parse(txt.slice(txt.indexOf('{'), txt.lastIndexOf('}') + 1));
@@ -3658,6 +3658,30 @@ class Component extends DCLogic {
     }
     return best || dataUrl;
   }
+  // Two routes, one contract. window.claude exists only inside the tool that built
+  // this app; self-hosted, the app posts to its own /api/vision so the key stays on
+  // the server. Anything in this file is readable by every visitor.
+  API_URL = '/api/vision';
+  hasModel() {
+    if (typeof window !== 'undefined' && window.claude && window.claude.complete) return true;
+    // Self-hosted: /api/vision only exists on a host that runs functions. file:// and
+    // static hosts cannot, so do not promise analysis we cannot deliver.
+    return typeof location !== 'undefined' && /^https?:$/.test(location.protocol);
+  }
+  async askModel(body) {
+    if (typeof window !== 'undefined' && window.claude && window.claude.complete) {
+      try { return await window.claude.complete(Object.assign({ model:'claude-sonnet-4-5' }, body)); }
+      catch(e) { return await window.claude.complete(body); }
+    }
+    const r = await fetch(this.API_URL, {
+      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body)
+    });
+    const j = await r.json().catch(() => null);
+    if (!r.ok) throw new Error((j && j.error) ? String(j.error).slice(0, 80) : 'endpoint ' + r.status);
+    const txt = j && (j.text || j.completion || j.content);
+    if (!txt) throw new Error('empty reply from /api/vision');
+    return typeof txt === 'string' ? txt : String(txt);
+  }
   async runVision(fullUrl) {
     const note = (this.state.log.note||'').trim();
     const dataUrl = await this.fitForApi(fullUrl);
@@ -3674,11 +3698,8 @@ class Component extends DCLogic {
       messages: [{ role:'user', content:[ { type:'image', source:{ type:'base64', media_type:media, data } }, { type:'text', text:prompt } ] }] };
     let txt = null;
     this._visionErr = null;
-    try { txt = await window.claude.complete(Object.assign({ model:'claude-sonnet-4-5' }, body)); }
-    catch(e) {
-      try { txt = await window.claude.complete(body); }
-      catch(e2) { this._visionErr = (e2 && e2.message) ? e2.message.slice(0,90) : 'request failed'; txt = null; }
-    }
+    try { txt = await this.askModel(body); }
+    catch(e) { this._visionErr = (e && e.message) ? e.message.slice(0,90) : 'request failed'; txt = null; }
     if (!txt) { this._visionErr = this._visionErr || 'empty response'; return null; }
     try {
       const j = JSON.parse(txt.slice(txt.indexOf('{'), txt.lastIndexOf('}')+1));
@@ -3695,7 +3716,7 @@ class Component extends DCLogic {
     const body = { max_tokens: 200, system:'You estimate how much food is left on a finished plate. Output JSON only.',
       messages:[{ role:'user', content:[ { type:'image', source:{ type:'base64', media_type:media, data } },
         { type:'text', text:'This is the same plate after eating. The meal was: "'+this.state.log.dish+'". What percentage of the original food is still on the plate? Reply ONLY {"leftover":0}' } ] }] };
-    try { const t = await window.claude.complete(body); const j = JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}')+1));
+    try { const t = await this.askModel(body); const j = JSON.parse(t.slice(t.indexOf('{'), t.lastIndexOf('}')+1));
       return Math.max(0, Math.min(90, Math.round((Number(j.leftover)||0)/5)*5)); } catch(e) { return null; }
   }
   // A base64 dataURL's length is always 23 + 4k, so `length % 6` only ever yields
@@ -3963,7 +3984,7 @@ class Component extends DCLogic {
   startAnalysis(dataUrl) {
     this.L({ photo:dataUrl, step:'analyzing', phase:0, err:null });
     [700,1500,2400].forEach((ms,i)=>this.later(()=>this.L({ phase:i+1 }), ms));
-    const real = this.props.useRealAI !== false && typeof window !== 'undefined' && window.claude && window.claude.complete;
+    const real = this.props.useRealAI !== false && this.hasModel();
     if (real) {
       this.runVision(dataUrl)
         .then(r => r ? this.applyResult(r, 'Vision · '+r.conf+' confidence') : this.failAnalysis(this._visionErr))
