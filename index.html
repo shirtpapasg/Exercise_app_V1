@@ -229,7 +229,7 @@
           <div style="width:44px;height:44px;border-radius:13px;background:linear-gradient(160deg,#ffb627,#c77f0b);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#1a1204">10</div>
           <div>
             <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px">The Ten · Silver League</div>
-            <div data-ink="dim" style="font-size:13px;color:#8fa3bb">Week 3 of 8 · top 3 promote, bottom 2 drop</div>
+            <div data-ink="dim" style="font-size:13px;color:#8fa3bb">{{ season.rules }}</div>
           </div>
         </div>
       </div>
@@ -427,7 +427,7 @@
       <sc-for list="{{ weekStrip }}" as="w" hint-placeholder-count="7">
         <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:5px">
           <div style="width:100%;border-radius:3px;min-height:3px;background:{{ w.color }};height:{{ w.h }};transition:height .3s ease-out"></div>
-          <div style="font-size:9px;font-weight:800;text-align:center;color:{{ w.fg }}">{{ w.label }}</div>
+          <div style="font-size:10px;font-weight:800;text-align:center;color:{{ w.fg }}">{{ w.label }}</div>
         </div>
       </sc-for>
     </div>
@@ -440,7 +440,7 @@
         <div data-ink="blue" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#a9e2ff">Next meal plan</div>
         <div style="padding:2px 8px;border-radius:7px;background:{{ plan.vBg }};border:1px solid {{ plan.vBorder }};font-size:10px;font-weight:900;color:{{ plan.vColor }};text-transform:uppercase">{{ plan.verdict }}</div>
         <div style="flex:1"></div>
-        <button onClick="{{ clearPlan }}" data-s="tint1" data-ink="dim" data-b="hair" style="width:26px;height:26px;border-radius:8px;border:0;background:rgba(255,255,255,.06);color:#7d8ea6;font-size:12px;cursor:pointer" aria-label="Close">✕</button>
+        <button onClick="{{ clearPlan }}" data-s="tint1" data-ink="dim" data-b="hair" aria-label="Clear plan" style="width:38px;height:38px;border-radius:11px;border:0;background:rgba(255,255,255,.06);color:#7d8ea6;font-size:12px;cursor:pointer" aria-label="Close">✕</button>
       </div>
       <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;line-height:1.2;margin-bottom:6px;text-wrap:pretty">{{ plan.dish }}</div>
       <div data-ink="mid" style="font-size:14px;color:#cddaea;line-height:1.5;text-wrap:pretty">{{ plan.portion }}</div>
@@ -572,7 +572,7 @@
             <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8fa3bb;font-weight:800">Context</div>
             <button onClick="{{ info.context.toggle }}" aria-label="What this means" style-after="content:'';position:absolute;inset:-9px" style="position:relative;width:22px;height:22px;border-radius:7px;border:0;background:{{ info.context.bg }};color:{{ info.context.fg }};font-size:10px;font-weight:900;cursor:pointer">{{ info.context.glyph }}</button>
           </div>
-          <button onClick="{{ toggleMic }}" style="display:flex;align-items:center;gap:7px;height:34px;padding:0 12px;border-radius:10px;border:1px solid {{ mic.border }};background:{{ mic.bg }};color:{{ mic.fg }};font-size:13px;font-weight:800;cursor:pointer">{{ mic.label }}</button>
+          <button onClick="{{ toggleMic }}" style="display:flex;align-items:center;gap:7px;height:40px;padding:0 13px;border-radius:10px;border:1px solid {{ mic.border }};background:{{ mic.bg }};color:{{ mic.fg }};font-size:13px;font-weight:800;cursor:pointer">{{ mic.label }}</button>
         </div>
         <textarea onChange="{{ onNote }}" value="{{ log.note }}" placeholder="&quot;cooked in two tablespoons of olive oil, large portion&quot;" data-s="field" data-ink="hi" data-b="line" style="width:100%;min-height:62px;resize:none;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 12px;color:#eaf1fb;font-size:14px;line-height:1.45;outline:none"></textarea>
         <sc-if value="{{ info.context.open }}" hint-placeholder-val="{{ false }}">
@@ -661,7 +661,7 @@
           <div style="display:flex;gap:11px;padding-bottom:6px">
             <sc-for list="{{ log.totals.macros }}" as="t" hint-placeholder-count="3">
               <div style="text-align:right">
-                <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:#8fa3bb;font-weight:800">{{ t.name }}</div>
+                <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:#8fa3bb;font-weight:800">{{ t.name }}</div>
                 <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;color:{{ t.color }}">{{ t.val }}</div>
               </div>
             </sc-for>
@@ -685,7 +685,7 @@
                 <input type="number" inputmode="numeric" value="{{ it.kcal }}" onChange="{{ it.setKcal }}" data-ink="green" style="width:62px;background:transparent;border:0;border-bottom:1px dashed rgba(63,195,95,.45);padding:0;color:#3fc35f;font-family:'Nunito',sans-serif;font-weight:900;font-size:19px;text-align:right;outline:none">
                 <span data-ink="dim" style="font-size:10px;color:#6c7d94;font-weight:800">kcal</span>
               </div>
-              <button onClick="{{ it.remove }}" data-ink="red" data-b="line" style="width:32px;height:32px;border-radius:9px;flex:0 0 auto;border:1px solid rgba(255,255,255,.1);background:rgba(232,73,63,.14);color:#e8493f;font-size:14px;font-weight:800;cursor:pointer" aria-label="Close">✕</button>
+              <button onClick="{{ it.remove }}" data-ink="red" data-b="line" aria-label="Remove item" style="width:38px;height:38px;border-radius:11px;flex:0 0 auto;border:1px solid rgba(255,255,255,.1);background:rgba(232,73,63,.14);color:#e8493f;font-size:14px;font-weight:800;cursor:pointer" aria-label="Close">✕</button>
             </div>
             <div style="display:flex;align-items:center;gap:9px;margin-top:11px">
               <button onClick="{{ it.dec }}" data-s="btn" data-ink="hi" data-b="line" style="width:44px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:#1a2333;color:#eaf1fb;font-size:20px;font-weight:800;cursor:pointer" aria-label="Decrease">−</button>
@@ -753,11 +753,11 @@
   <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
     <div>
       <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;line-height:1.1">Silver League</div>
-      <div data-ink="dim" style="font-size:13px;color:#8fa3bb;margin-top:3px">Week 3 of 8 · resets Sunday 23:59</div>
+      <div data-ink="dim" style="font-size:13px;color:#8fa3bb;margin-top:3px">{{ season.sub }}</div>
     </div>
     <div style="text-align:right">
       <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8fa3bb;font-weight:800">Closes in</div>
-      <div data-ink="gold" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#ffb627">2d 04h</div>
+      <div data-ink="gold" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:20px;color:#ffb627">{{ season.closes }}</div>
     </div>
   </div>
 
@@ -771,7 +771,7 @@
     <div>
       <div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:14px;padding-bottom:2px">
         <sc-for list="{{ metricChips }}" as="c" hint-placeholder-count="4">
-          <button onClick="{{ c.pick }}" style="flex:0 0 auto;height:34px;padding:0 13px;border-radius:10px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap">{{ c.label }}</button>
+          <button onClick="{{ c.pick }}" style="flex:0 0 auto;height:40px;padding:0 14px;border-radius:10px;border:1px solid {{ c.border }};background:{{ c.bg }};color:{{ c.fg }};font-size:13px;font-weight:800;cursor:pointer;white-space:nowrap">{{ c.label }}</button>
         </sc-for>
       </div>
       <div style="display:flex;align-items:center;gap:8px;margin:0 2px 12px">
@@ -823,15 +823,35 @@
         </sc-for>
       </div>
 
-      <div style="display:flex;gap:16px;margin-top:16px;padding:0 4px">
-        <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#3fc35f;display:inline-block"></span>Promotes</div>
-        <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#4a90e2;display:inline-block"></span>Safe</div>
-        <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#e8493f;display:inline-block"></span>Relegates</div>
-      </div>
+      <sc-if value="{{ solo }}" hint-placeholder-val="{{ false }}">
+        <div data-s="card" data-b="hair" style="margin-top:14px;background:rgba(102,204,255,.08);border:1px solid rgba(102,204,255,.28);border-radius:18px;padding:18px">
+          <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:17px;margin-bottom:6px">A table of one.</div>
+          <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">{{ inviteNote }}</div>
+          <button onClick="{{ shareApp }}" data-ink="hi" style="width:100%;margin-top:14px;height:46px;border:0;border-radius:12px;background:linear-gradient(180deg,#5aa0f0,#3a76c4);color:#04101f;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer">{{ inviteLabel }}</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showZones }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:16px;margin-top:16px;padding:0 4px">
+          <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#3fc35f;display:inline-block"></span>Promotes</div>
+          <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#4a90e2;display:inline-block"></span>Safe</div>
+          <div data-ink="dim" style="display:flex;align-items:center;gap:7px;font-size:11px;color:#8fa3bb;font-weight:700"><span style="width:9px;height:9px;border-radius:3px;background:#e8493f;display:inline-block"></span>Relegates</div>
+        </div>
+      </sc-if>
     </div>
   </sc-if>
 
   <sc-if value="{{ board.isDuel }}" hint-placeholder-val="{{ false }}">
+  <div>
+  <sc-if value="{{ duel.none }}" hint-placeholder-val="{{ false }}">
+    <div data-s="card" data-b="hair" style="background:rgba(232,73,63,.09);border:1px solid rgba(232,73,63,.3);border-radius:20px;padding:22px;text-align:center">
+      <div style="width:52px;height:52px;margin:0 auto 14px;border-radius:16px;background:rgba(232,73,63,.16);border:1px solid rgba(232,73,63,.4);display:flex;align-items:center;justify-content:center;font-size:22px">⚔</div>
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:19px;margin-bottom:6px">Nobody to duel.</div>
+      <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">A duel needs two people. {{ inviteNote }}</div>
+      <button onClick="{{ shareApp }}" data-ink="hi" style="width:100%;margin-top:16px;height:46px;border:0;border-radius:12px;background:linear-gradient(180deg,#5aa0f0,#3a76c4);color:#04101f;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer">{{ inviteLabel }}</button>
+    </div>
+  </sc-if>
+  <sc-if value="{{ duel.real }}" hint-placeholder-val="{{ true }}">
     <div>
       <div style="background:linear-gradient(100deg,rgba(232,73,63,.16),rgba(7,13,21,.85));border:2px solid rgba(232,73,63,.45);border-radius:22px;padding:20px;box-shadow:0 0 30px rgba(232,73,63,.14)">
         <div style="display:flex;align-items:center;justify-content:space-between">
@@ -879,6 +899,8 @@
       </div>
     </div>
   </sc-if>
+  </div>
+  </sc-if>
 
   <sc-if value="{{ board.isWall }}" hint-placeholder-val="{{ false }}">
     <div>
@@ -907,8 +929,8 @@
 <sc-if value="{{ isSquad }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Squad" style="padding:16px 18px 28px">
   <div style="margin-bottom:16px">
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;line-height:1.1">The Ten</div>
-    <div data-ink="dim" style="font-size:13px;color:#8fa3bb;margin-top:3px">Private squad · invite code {{ squad.code }}</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:26px;line-height:1.1">{{ squad.title }}</div>
+    <div data-ink="dim" style="font-size:13px;color:#8fa3bb;margin-top:3px">{{ squad.sub }}</div>
   </div>
 
   <div style="background:linear-gradient(180deg,rgba(102,204,255,.13),rgba(7,13,21,.85));border:2px solid rgba(102,204,255,.42);border-radius:22px;padding:20px;box-shadow:0 0 28px rgba(102,204,255,.14)">
@@ -916,11 +938,11 @@
       <div data-ink="blue" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#a9e2ff;font-weight:800">This week's challenge</div>
       <div data-ink="dim" style="font-size:12px;color:#8fa3bb;font-weight:700">3 days left</div>
     </div>
-    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.15">Protein floor, ten for ten</div>
-    <div data-ink="low" style="font-size:14px;color:#9fb1c7;margin-top:5px;line-height:1.45">Every member hits their protein target four days running. One person short and nobody gets the badge.</div>
+    <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.15">{{ squad.chTitle }}</div>
+    <div data-ink="low" style="font-size:14px;color:#9fb1c7;margin-top:5px;line-height:1.45;text-wrap:pretty">{{ squad.chBody }}</div>
     <div style="display:flex;align-items:baseline;gap:8px;margin:16px 0 8px">
       <div data-ink="blue" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:34px;color:#66ccff;line-height:1">{{ squad.done }}</div>
-      <div data-ink="dim" style="font-size:14px;color:#8fa3bb;font-weight:700">of 10 on track</div>
+      <div data-ink="dim" style="font-size:14px;color:#8fa3bb;font-weight:700">{{ squad.of }}</div>
     </div>
     <div data-s="tint2" data-b="hair" style="height:10px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden">
       <div style="height:100%;border-radius:5px;background:linear-gradient(90deg,#66ccff,#4a90e2);width:{{ squad.pct }}"></div>
@@ -950,6 +972,11 @@
 
   <div style="margin-top:22px">
     <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:12px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Squad feed</div>
+    <sc-if value="{{ squad.solo }}" hint-placeholder-val="{{ false }}">
+      <div data-b="dash" style="border:1px dashed rgba(255,255,255,.16);border-radius:16px;padding:20px;text-align:center">
+        <div data-ink="low" style="font-size:14px;color:#9fb1c7;line-height:1.5;text-wrap:pretty">Nothing here yet. Once someone joins with your invite code, their streaks and slips show up in this feed.</div>
+      </div>
+    </sc-if>
     <div style="display:flex;flex-direction:column;gap:8px">
       <sc-for list="{{ squad.feed }}" as="f" hint-placeholder-count="4">
         <div data-s="card" data-b="hair" style="display:flex;gap:11px;align-items:flex-start;background:rgba(7,13,21,.7);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:12px 13px">
@@ -1234,6 +1261,204 @@
 </div>
 </sc-if>
 
+<!-- ============ SHARED SQUAD ============ -->
+<sc-if value="{{ isSquadSetup }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Shared squad" data-s="page" style="padding:16px 18px 28px">
+  <div data-s="scrimtop" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:11px;margin:-16px -18px 16px;padding:16px 18px 12px;background:linear-gradient(180deg,rgba(6,11,18,.97) 70%,rgba(6,11,18,0))">
+    <button onClick="{{ backToMe }}" data-s="btn" data-ink="hi" data-b="line" aria-label="Back" style="width:40px;height:40px;border-radius:12px;flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.9);color:#eaf1fb;font-size:17px;cursor:pointer">←</button>
+    <div style="flex:1;min-width:0">
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.1">Shared squad</div>
+      <div data-ink="dim" style="font-size:12px;color:#8fa3bb;margin-top:2px">One live board, everyone on it</div>
+    </div>
+  </div>
+
+  <div data-s="card" data-b="hair" style="display:flex;align-items:center;gap:12px;background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:14px;margin-bottom:14px">
+    <div style="width:10px;height:10px;border-radius:5px;flex:0 0 auto;background:{{ sq.statusColor }}"></div>
+    <div style="flex:1;min-width:0">
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:{{ sq.statusColor }}">{{ sq.statusText }}</div>
+      <sc-if value="{{ sq.linked }}" hint-placeholder-val="{{ false }}">
+        <div data-ink="dim" style="font-size:12px;color:#8fa3bb;margin-top:3px">{{ sq.squadText }} · {{ sq.synced }}</div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ sq.linked }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ sq.syncNow }}" data-s="btn" data-b="line" data-ink="blue" aria-label="Sync now" style="width:40px;height:40px;border-radius:11px;flex:0 0 auto;border:1px solid rgba(102,204,255,.4);background:rgba(102,204,255,.12);color:#66ccff;font-size:15px;cursor:pointer">↻</button>
+    </sc-if>
+  </div>
+
+  <div data-s="card" data-b="hair" style="background:rgba(102,204,255,.08);border:1px solid rgba(102,204,255,.28);border-radius:18px;padding:16px;margin-bottom:16px">
+    <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;margin-bottom:6px">What gets shared</div>
+    <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">Your daily totals only — calories, protein, points, streak. Your <strong data-ink="blue" style="color:#a9e2ff">photos never leave this device</strong>. Nobody sees what you ate, only how you scored.</div>
+  </div>
+
+  <sc-if value="{{ sq.needsProject }}" hint-placeholder-val="{{ true }}">
+    <div>
+      <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Step 1 · connect the database</div>
+      <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+        <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;margin-bottom:13px;text-wrap:pretty">Only one of you does this. Make a free project at supabase.com, run the setup file, then copy these two values from Settings → API.</div>
+        <input value="{{ sq.url }}" onChange="{{ sq.onUrl }}" autoComplete="off" spellCheck="{{ false }}" placeholder="https://abcdefg.supabase.co" data-s="field" data-b="hair" data-ink="hi" style="width:100%;height:46px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 13px;color:#eaf1fb;font-size:14px;outline:none;margin-bottom:9px">
+        <input value="{{ sq.key }}" onChange="{{ sq.onKey }}" type="password" autoComplete="off" spellCheck="{{ false }}" placeholder="anon public key" data-s="field" data-b="hair" data-ink="hi" style="width:100%;height:46px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 13px;color:#eaf1fb;font-size:14px;outline:none">
+        <button onClick="{{ sq.saveProject }}" data-ink="hi" style="width:100%;margin-top:11px;height:48px;border:0;border-radius:13px;background:linear-gradient(180deg,#5aa0f0,#3a76c4);color:#04101f;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">Save project</button>
+        <div data-ink="dim" style="font-size:12px;color:#7d8ea6;line-height:1.55;margin-top:11px;text-wrap:pretty">The anon key is meant to be public — the database rules decide what it can reach. It is not your AI key.</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ sq.awaitingLink }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Step 2 · sign in</div>
+      <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+        <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;margin-bottom:13px;text-wrap:pretty">No password. We email you a link, you tap it, you are in — and your data follows you to any device.</div>
+        <input value="{{ sq.email }}" onChange="{{ sq.onEmail }}" type="email" autoComplete="email" spellCheck="{{ false }}" placeholder="you@email.com" data-s="field" data-b="hair" data-ink="hi" style="width:100%;height:46px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 13px;color:#eaf1fb;font-size:15px;outline:none">
+        <button onClick="{{ sq.sendLink }}" disabled="{{ sq.sending }}" data-ink="hi" style="width:100%;margin-top:11px;height:50px;border:0;border-radius:13px;background:linear-gradient(180deg,#4ad06c,#2ba14c);color:#04160a;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ sq.sendLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ sq.linked }}" hint-placeholder-val="{{ false }}">
+    <div>
+      <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Your name on the board</div>
+      <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+        <div style="display:flex;gap:9px">
+          <input value="{{ sq.handle }}" onChange="{{ sq.onHandle }}" placeholder="Your name" data-s="field" data-b="hair" data-ink="hi" style="flex:1;min-width:0;height:46px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 13px;color:#eaf1fb;font-size:15px;outline:none">
+          <button onClick="{{ sq.saveHandle }}" data-s="btn" data-b="line" data-ink="hi" style="height:46px;padding:0 16px;flex:0 0 auto;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.85);color:#cddaea;font-weight:800;font-size:14px;cursor:pointer">Save</button>
+        </div>
+      </div>
+
+      <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Squad code</div>
+      <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+        <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;margin-bottom:13px;text-wrap:pretty">Everyone types the same code. Make one up — anything, as long as you all match. That is what puts you on one board.</div>
+        <div style="display:flex;gap:9px">
+          <input value="{{ sq.code }}" onChange="{{ sq.onCode }}" autoCapitalize="characters" spellCheck="{{ false }}" placeholder="THE-FOUR" data-s="field" data-b="hair" data-ink="green" style="flex:1;min-width:0;height:46px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 13px;color:#8ee6a5;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;letter-spacing:.06em;text-transform:uppercase;outline:none">
+          <button onClick="{{ sq.joinSquad }}" data-ink="hi" style="height:46px;padding:0 18px;flex:0 0 auto;border:0;border-radius:12px;background:linear-gradient(180deg,#4ad06c,#2ba14c);color:#04160a;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">Join</button>
+        </div>
+        <sc-if value="{{ sq.hasSquad }}" hint-placeholder-val="{{ false }}">
+          <div data-ink="dim" style="font-size:12px;color:#7d8ea6;font-weight:700;margin-top:11px">{{ sq.memberCount }}</div>
+        </sc-if>
+      </div>
+
+      <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Invite the others</div>
+      <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+        <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;margin-bottom:13px;text-wrap:pretty">This link carries the connection and the squad code. They open it, enter their email, and they are on your board — no setup, no pasting keys.</div>
+        <button onClick="{{ sq.copyInvite }}" data-ink="hi" style="width:100%;height:48px;border:0;border-radius:13px;background:{{ sq.inviteBg }};color:{{ sq.inviteFg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:{{ sq.inviteCursor }}">{{ sq.inviteBtn }}</button>
+      </div>
+
+      <div style="display:flex;gap:9px">
+        <button onClick="{{ sq.signOut }}" data-s="btn" data-b="line" data-ink="mid" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.85);color:#cddaea;font-weight:800;font-size:14px;cursor:pointer">Sign out</button>
+        <button onClick="{{ sq.disconnect }}" data-s="btn" data-b="line" data-ink="red" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(232,73,63,.4);background:rgba(232,73,63,.12);color:#e8493f;font-weight:800;font-size:14px;cursor:pointer">Disconnect</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ sq.hasMsg }}" hint-placeholder-val="{{ false }}">
+    <div style="font-size:13px;font-weight:700;line-height:1.5;margin-top:14px;color:{{ sq.msgColor }};text-wrap:pretty">{{ sq.msg }}</div>
+  </sc-if>
+</div>
+</sc-if>
+
+<!-- ============ AI KEY ============ -->
+<sc-if value="{{ isKey }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="AI key" data-s="page" style="padding:16px 18px 28px">
+  <div data-s="scrimtop" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:11px;margin:-16px -18px 16px;padding:16px 18px 12px;background:linear-gradient(180deg,rgba(6,11,18,.97) 70%,rgba(6,11,18,0))">
+    <button onClick="{{ backToMe }}" data-s="btn" data-ink="hi" data-b="line" aria-label="Back" style="width:40px;height:40px;border-radius:12px;flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.9);color:#eaf1fb;font-size:17px;cursor:pointer">←</button>
+    <div style="flex:1;min-width:0">
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.1">AI key</div>
+      <div data-ink="dim" style="font-size:12px;color:#8fa3bb;margin-top:2px">Switches on photo calorie reading</div>
+    </div>
+  </div>
+
+  <div data-s="card" data-b="hair" style="display:flex;align-items:center;gap:12px;background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:14px;margin-bottom:16px">
+    <div style="width:10px;height:10px;border-radius:5px;flex:0 0 auto;background:{{ apikey.statusColor }}"></div>
+    <div style="flex:1;min-width:0">
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:{{ apikey.statusColor }}">{{ apikey.statusText }}</div>
+      <sc-if value="{{ apikey.saved }}" hint-placeholder-val="{{ false }}">
+        <div data-ink="dim" style="font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#8fa3bb;margin-top:3px">{{ apikey.mask }}</div>
+      </sc-if>
+    </div>
+    <sc-if value="{{ apikey.saved }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ apikey.remove }}" data-s="btn" data-b="line" data-ink="red" style="height:40px;padding:0 13px;border-radius:11px;flex:0 0 auto;border:1px solid rgba(232,73,63,.4);background:rgba(232,73,63,.13);color:#e8493f;font-size:13px;font-weight:800;cursor:pointer">Remove</button>
+    </sc-if>
+  </div>
+
+  <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Paste your key</div>
+  <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+    <input value="{{ apikey.draft }}" onChange="{{ apikey.onInput }}" type="password" autoComplete="off" spellCheck="{{ false }}" placeholder="sk-ant-…" data-s="field" data-b="hair" data-ink="hi" style="width:100%;height:50px;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:13px;padding:0 14px;color:#eaf1fb;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px;outline:none">
+    <button onClick="{{ apikey.save }}" disabled="{{ apikey.blocked }}" data-ink="hi" style="width:100%;margin-top:11px;height:50px;border:0;border-radius:13px;background:{{ apikey.saveBg }};color:{{ apikey.saveFg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:{{ apikey.saveCursor }}">{{ apikey.saveLabel }}</button>
+    <sc-if value="{{ apikey.hasResult }}" hint-placeholder-val="{{ false }}">
+      <div style="font-size:13px;font-weight:700;line-height:1.5;margin-top:11px;color:{{ apikey.resultColor }};text-wrap:pretty">{{ apikey.result }}</div>
+    </sc-if>
+    <div data-ink="dim" style="font-size:12px;color:#7d8ea6;line-height:1.55;margin-top:11px;text-wrap:pretty">Get one at console.anthropic.com → Billing → add a little credit → API Keys. Ten people logging three photos a day costs a few dollars a month.</div>
+  </div>
+
+  <div data-s="card" data-b="hair" style="background:rgba(102,204,255,.08);border:1px solid rgba(102,204,255,.28);border-radius:18px;padding:16px">
+    <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;margin-bottom:7px">Where this key goes</div>
+    <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">It is saved in <strong data-ink="blue" style="color:#a9e2ff">this browser only</strong> and sent straight to Anthropic. It is never written into the app file, so nobody else opening your link can see or spend it. Each person on your league adds their own.</div>
+    <div style="height:1px;background:rgba(255,255,255,.1);margin:14px 0"></div>
+    <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;margin-bottom:7px">Or put it on the server instead</div>
+    <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">On Vercel, add <strong data-ink="blue" style="color:#a9e2ff">ANTHROPIC_API_KEY</strong> under Settings → Environment Variables and redeploy. Then one key covers everyone and nobody types anything. The app checks the server first and only falls back to the key above.</div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ CONNECT APPLE WATCH ============ -->
+<sc-if value="{{ isHk }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Connect Apple Watch" data-s="page" style="padding:16px 18px 28px">
+  <div data-s="scrimtop" style="position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:11px;margin:-16px -18px 16px;padding:16px 18px 12px;background:linear-gradient(180deg,rgba(6,11,18,.97) 70%,rgba(6,11,18,0))">
+    <button onClick="{{ backToMe }}" data-s="btn" data-ink="hi" data-b="line" aria-label="Back" style="width:40px;height:40px;border-radius:12px;flex:0 0 auto;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.9);color:#eaf1fb;font-size:17px;cursor:pointer">←</button>
+    <div style="flex:1;min-width:0">
+      <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.1">Connect Apple Watch</div>
+      <div data-ink="dim" style="font-size:12px;color:#8fa3bb;margin-top:2px">Real figures from your own Health app</div>
+    </div>
+  </div>
+
+  <div data-s="card" data-b="hair" style="background:rgba(255,122,77,.09);border:1px solid rgba(255,122,77,.3);border-radius:18px;padding:16px;margin-bottom:16px">
+    <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;margin-bottom:6px">Why this needs a Shortcut</div>
+    <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.55;text-wrap:pretty">Apple only lets native apps read Health directly — a web app cannot, no matter who builds it. A Shortcut on your iPhone can, and it can hand the numbers to this app. One-time setup, then it runs itself.</div>
+  </div>
+
+  <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">The five-minute version</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:14px">
+    <sc-for list="{{ hkSteps }}" as="s" hint-placeholder-count="5">
+      <div data-s="card" data-b="hair" style="display:flex;gap:12px;background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:14px">
+        <div style="width:26px;height:26px;border-radius:9px;flex:0 0 auto;background:linear-gradient(160deg,#ff7a4d,#c73f1d);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;color:#1a0c05">{{ s.n }}</div>
+        <div style="flex:1;min-width:0">
+          <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;line-height:1.25">{{ s.head }}</div>
+          <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.5;margin-top:3px;text-wrap:pretty">{{ s.body }}</div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px;margin-bottom:14px">
+    <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin-bottom:9px">The link your Shortcut opens</div>
+    <div data-s="field" data-b="hair" data-ink="green" style="background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:11px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;line-height:1.6;color:#8ee6a5;word-break:break-all;margin-bottom:10px">{{ hk.sample }}</div>
+    <div style="display:flex;gap:8px">
+      <button onClick="{{ hk.copySample }}" data-ink="hi" style="flex:1;height:44px;border:0;border-radius:12px;background:linear-gradient(180deg,#ff8f63,#d1501f);color:#1a0c05;font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;letter-spacing:.03em;cursor:pointer">Copy this link</button>
+      <button onClick="{{ hk.tryIt }}" data-s="btn" data-b="line" data-ink="hi" style="flex:1;height:44px;border-radius:12px;border:1px solid rgba(102,204,255,.4);background:rgba(102,204,255,.12);color:#66ccff;font-weight:800;font-size:14px;cursor:pointer">Test it now</button>
+    </div>
+    <div data-ink="dim" style="font-size:12px;color:#7d8ea6;line-height:1.5;margin-top:10px;text-wrap:pretty">Swap each number for a Health value in your Shortcut. "Test it now" runs it with these example figures so you can see it land.</div>
+  </div>
+
+  <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:0 2px 10px">Or just type today's numbers</div>
+  <div data-s="card" data-b="hair" style="background:rgba(7,13,21,.8);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:16px">
+    <div data-ink="dim" style="font-size:13px;color:#9fb1c7;line-height:1.5;margin-bottom:13px;text-wrap:pretty">Open the Fitness app, read the three rings, type them here. Slower, but it is your real data and needs no setup at all.</div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <sc-for list="{{ hkFields }}" as="f" hint-placeholder-count="5">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="flex:1;min-width:0">
+            <div data-ink="hi" style="font-size:14px;font-weight:800;color:#eaf1fb">{{ f.label }}</div>
+            <div data-ink="dim" style="font-size:11px;color:#7d8ea6;font-weight:700;margin-top:1px">{{ f.hint }}</div>
+          </div>
+          <input value="{{ f.value }}" onChange="{{ f.set }}" inputMode="numeric" placeholder="{{ f.ph }}" data-s="field" data-b="hair" data-ink="hi" style="width:104px;height:44px;flex:0 0 auto;background:#101826;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:0 12px;color:#eaf1fb;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;text-align:right;outline:none">
+        </div>
+      </sc-for>
+    </div>
+    <button onClick="{{ hk.save }}" data-ink="hi" style="width:100%;margin-top:14px;height:50px;border:0;border-radius:13px;background:{{ hk.saveBg }};color:{{ hk.saveFg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ hk.saveLabel }}</button>
+  </div>
+
+  <div data-ink="dim" style="font-size:12px;color:#7d8ea6;line-height:1.55;margin-top:14px;text-wrap:pretty">Either route stores nothing on a server — the figures live on this device, same as your plates.</div>
+</div>
+</sc-if>
+
 <!-- ============ HEIC CONVERTER ============ -->
 <sc-if value="{{ isConvert }}" hint-placeholder-val="{{ false }}">
 <div data-screen-label="Photo converter" style="padding:16px 18px 28px">
@@ -1257,7 +1482,7 @@
     <div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 2px 10px">
         <div style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:{{ conv.countColor }};font-weight:800">{{ conv.count }}</div>
-        <button onClick="{{ clearConvert }}" data-s="btn" data-ink="dim" data-b="line" style="height:30px;padding:0 11px;border-radius:9px;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.9);color:#8fa3bb;font-size:12px;font-weight:800;cursor:pointer">Clear</button>
+        <button onClick="{{ clearConvert }}" data-s="btn" data-ink="dim" data-b="line" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.9);color:#8fa3bb;font-size:12px;font-weight:800;cursor:pointer">Clear</button>
       </div>
       <div style="display:flex;flex-direction:column;gap:9px">
         <sc-for list="{{ conv.items }}" as="c" hint-placeholder-count="2">
@@ -1517,7 +1742,7 @@
         <sc-for list="{{ exPicker.intensities }}" as="i" hint-placeholder-count="4">
           <button onClick="{{ i.pick }}" data-b="hair" style="flex:1;padding:9px 4px;border-radius:11px;border:1px solid rgba(255,255,255,.09);background:{{ i.bg }};cursor:pointer">
             <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:12px;color:{{ i.fg }}">{{ i.label }}</div>
-            <div data-ink="dim" style="font-size:9px;color:#6c7d94;font-weight:700;margin-top:2px">{{ i.rate }}</div>
+            <div data-ink="dim" style="font-size:10px;color:#6c7d94;font-weight:700;margin-top:2px">{{ i.rate }}</div>
           </button>
         </sc-for>
       </div>
@@ -1535,7 +1760,7 @@
     <div data-s="scrimsheet" style="position:sticky;top:0;z-index:3;display:flex;align-items:center;justify-content:space-between;gap:12px;margin:-6px -4px 14px;padding:6px 4px 10px;background:linear-gradient(180deg,#0a1320 66%,rgba(10,19,32,0))">
       <div data-s="tint1" data-b="hair" style="display:flex;gap:3px;padding:3px;background:rgba(255,255,255,.05);border-radius:10px">
         <sc-for list="{{ timer.modes }}" as="m" hint-placeholder-count="2">
-          <button onClick="{{ m.pick }}" style="height:30px;padding:0 13px;border:0;border-radius:8px;background:{{ m.bg }};color:{{ m.fg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
+          <button onClick="{{ m.pick }}" style="height:40px;padding:0 15px;border:0;border-radius:8px;background:{{ m.bg }};color:{{ m.fg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer">{{ m.label }}</button>
         </sc-for>
       </div>
       <button onClick="{{ closeTimer }}" data-s="btn" data-ink="mid" data-b="line" style="width:40px;height:40px;border-radius:11px;flex:0 0 auto;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.9);color:#cddaea;font-size:14px;font-weight:800;cursor:pointer" aria-label="Close">✕</button>
@@ -1570,7 +1795,7 @@
 
     <div data-s="tint1" data-b="hair" style="display:flex;gap:3px;padding:3px;background:rgba(255,255,255,.05);border-radius:11px;margin-bottom:10px">
       <sc-for list="{{ timer.sourceTabs }}" as="s" hint-placeholder-count="2">
-        <button onClick="{{ s.pick }}" style="flex:1;height:32px;border:0;border-radius:8px;background:{{ s.bg }};color:{{ s.fg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer">{{ s.label }}</button>
+        <button onClick="{{ s.pick }}" style="flex:1;height:40px;border:0;border-radius:8px;background:{{ s.bg }};color:{{ s.fg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:11px;letter-spacing:.05em;text-transform:uppercase;cursor:pointer">{{ s.label }}</button>
       </sc-for>
     </div>
 
@@ -1618,6 +1843,15 @@
 
     <div data-ink="red" style="margin-top:12px;padding:12px 13px;background:rgba(255,122,77,.08);border:1px solid rgba(255,122,77,.26);border-radius:13px;font-size:13px;color:#ffb69a;line-height:1.45;text-wrap:pretty">{{ timer.purpose }}</div>
 
+    <button onClick="{{ pu.open }}" style="width:100%;margin-top:10px;display:flex;align-items:center;gap:12px;background:rgba(102,204,255,.08);border:1px solid rgba(102,204,255,.36);border-radius:14px;padding:13px 14px;cursor:pointer;text-align:left">
+      <div style="font-size:20px">💪</div>
+      <div style="flex:1;min-width:0">
+        <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:#eaf1fb">Count my push-ups</div>
+        <div data-ink="blue" style="font-size:11px;color:#a9e2ff;font-weight:700;margin-top:2px">The camera counts every rep. Video never leaves this phone.</div>
+      </div>
+      <div data-ink="blue" style="color:#66ccff;font-size:13px;font-weight:900">→</div>
+    </button>
+
     <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8fa3bb;font-weight:800;margin:20px 2px 9px">Beat</div>
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <sc-for list="{{ timer.vibes }}" as="v" hint-placeholder-count="3">
@@ -1643,7 +1877,7 @@
 
     <div style="display:flex;align-items:center;justify-content:space-between;margin:20px 2px 9px">
       <div data-ink="dim" style="font-family:'Nunito',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8fa3bb;font-weight:800">Activity</div>
-      <button onClick="{{ goWorkouts }}" data-s="btn" data-ink="dim" data-b="line" style="height:26px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.8);color:#8fa3bb;font-size:11px;font-weight:800;cursor:pointer">History</button>
+      <button onClick="{{ goWorkouts }}" data-s="btn" data-ink="dim" data-b="line" style="height:38px;padding:0 14px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(20,29,43,.8);color:#8fa3bb;font-size:11px;font-weight:800;cursor:pointer">History</button>
     </div>
     <button onClick="{{ openExPicker }}" style="width:100%;display:flex;align-items:center;gap:12px;background:rgba(255,122,77,.1);border:1px solid rgba(255,122,77,.4);border-radius:14px;padding:13px 14px;cursor:pointer;text-align:left">
       <div style="font-size:20px">{{ timer.glyph }}</div>
@@ -1656,12 +1890,123 @@
     <sc-if value="{{ timer.recent }}" hint-placeholder-val="{{ false }}">
       <div style="display:flex;gap:7px;margin-top:8px;overflow-x:auto">
         <sc-for list="{{ timer.recent }}" as="r" hint-placeholder-count="3">
-          <button onClick="{{ r.pick }}" data-s="tint1" data-ink="low" data-b="line" style="display:flex;align-items:center;gap:6px;flex:0 0 auto;height:34px;padding:0 11px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#9fb1c7;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap">
+          <button onClick="{{ r.pick }}" data-s="tint1" data-ink="low" data-b="line" style="display:flex;align-items:center;gap:6px;flex:0 0 auto;height:40px;padding:0 12px;border-radius:10px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03);color:#9fb1c7;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap">
             <span>{{ r.glyph }}</span>{{ r.name }}
           </button>
         </sc-for>
       </div>
     </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ PUSH-UP COUNTER ============ -->
+<!-- The stage stays dark in both themes (it sits on live video), so nothing inside it carries a data-ink hook. -->
+<sc-if value="{{ pu.on }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Push-up counter" style="position:sticky;bottom:0;flex:0 0 0px;height:0;z-index:97">
+  <div data-s="page" style="position:fixed;inset:0;background:radial-gradient(620px 420px at 50% 14%, #16294a 0%, #070d15 52%, #04070c 100%)"></div>
+  <div style="position:fixed;inset:0;display:flex;justify-content:center;overflow-y:auto">
+    <div data-shell="overlay" style="width:100%;max-width:440px;padding:16px 18px 26px;display:flex;flex-direction:column;min-height:100%">
+
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px">
+        <div style="min-width:0">
+          <div data-ink="hi" style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;line-height:1.1;color:#eaf1fb">Push-up counter</div>
+          <div data-ink="dim" style="font-size:12px;color:#8fa3bb;font-weight:700;margin-top:3px">{{ pu.sub }}</div>
+        </div>
+        <button onClick="{{ pu.close }}" data-s="btn" data-ink="mid" data-b="line" style="width:44px;height:44px;border-radius:12px;flex:0 0 auto;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.9);color:#cddaea;font-size:14px;font-weight:800;cursor:pointer" aria-label="Close">✕</button>
+      </div>
+
+      <div style="position:relative;width:100%;height:54vh;min-height:300px;background:#000;border-radius:20px;overflow:hidden;border:2px solid {{ pu.frame }}">
+        <video ref="{{ puVideoRef }}" autoPlay="{{ true }}" playsInline="{{ true }}" muted="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:{{ pu.mirror }}"></video>
+        <canvas ref="{{ puCanvasRef }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:{{ pu.mirror }}"></canvas>
+
+        <sc-if value="{{ pu.isLive }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <div style="position:absolute;left:14px;top:10px;text-shadow:0 2px 10px rgba(0,0,0,.85)">
+              <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:76px;line-height:1;color:#ffffff;letter-spacing:-.03em">{{ pu.reps }}</div>
+              <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#ffffff">reps</div>
+            </div>
+            <div style="position:absolute;right:14px;top:14px;text-align:right;text-shadow:0 2px 10px rgba(0,0,0,.85)">
+              <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:24px;line-height:1;color:#ffb69a">{{ pu.kcal }} kcal</div>
+              <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;color:#ffffff;margin-top:5px">{{ pu.clock }}</div>
+            </div>
+            <div style="position:absolute;left:12px;right:12px;bottom:12px;padding:11px 13px;border-radius:13px;background:rgba(4,7,12,.78);border:1px solid {{ pu.statusHue }};font-size:14px;font-weight:800;line-height:1.4;color:#ffffff;text-wrap:pretty">{{ pu.statusText }}</div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ pu.isCover }}" hint-placeholder-val="{{ true }}">
+          <div style="position:absolute;inset:0;background:#0a1320;display:flex;flex-direction:column;justify-content:center;padding:20px;overflow-y:auto">
+            <sc-if value="{{ pu.isIdle }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <div style="font-size:34px;margin-bottom:10px">💪</div>
+                <div style="display:flex;flex-direction:column;gap:12px">
+                  <sc-for list="{{ pu.steps }}" as="s" hint-placeholder-count="3">
+                    <div style="display:flex;gap:11px;align-items:flex-start">
+                      <div style="width:26px;height:26px;border-radius:9px;flex:0 0 auto;background:rgba(102,204,255,.16);color:#a9e2ff;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center">{{ s.n }}</div>
+                      <div style="font-size:14px;color:#cddaea;line-height:1.45;text-wrap:pretty">{{ s.text }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pu.isLoading }}" hint-placeholder-val="{{ false }}">
+              <div style="text-align:center">
+                <div style="width:38px;height:38px;margin:0 auto 14px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:#66ccff;animation:plSpin .9s linear infinite"></div>
+                <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:#eaf1fb">Loading the motion tracker</div>
+                <div style="font-size:13px;color:#9fb1c7;margin-top:6px;line-height:1.45">About 6 MB, first time only. Allow the camera if your phone asks.</div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pu.isError }}" hint-placeholder-val="{{ false }}">
+              <div style="text-align:center">
+                <div style="font-size:30px;margin-bottom:8px">🚫</div>
+                <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:#ff9d95">Camera did not start</div>
+                <div style="font-size:13px;color:#cddaea;margin-top:7px;line-height:1.5;text-wrap:pretty">{{ pu.err }}</div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ pu.isDone }}" hint-placeholder-val="{{ false }}">
+              <div style="text-align:center">
+                <div style="font-family:'Nunito',sans-serif;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8fa3bb">Set finished</div>
+                <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0 4px">
+                  <button onClick="{{ pu.less }}" aria-label="One fewer rep" style="width:48px;height:48px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(20,29,43,.9);color:#cddaea;font-size:22px;font-weight:900;cursor:pointer">−</button>
+                  <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:84px;line-height:1;color:#ffffff;letter-spacing:-.03em;min-width:110px">{{ pu.reps }}</div>
+                  <button onClick="{{ pu.more }}" aria-label="One more rep" style="width:48px;height:48px;border-radius:14px;border:1px solid rgba(255,255,255,.16);background:rgba(20,29,43,.9);color:#cddaea;font-size:22px;font-weight:900;cursor:pointer">+</button>
+                </div>
+                <div style="font-size:12px;color:#8fa3bb;font-weight:700">Miscounted? Fix it with − and + before you save.</div>
+                <div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:22px;color:#ffb69a;margin-top:14px">about {{ pu.kcal }} kcal · {{ pu.clock }}</div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
+      </div>
+
+      <div data-ink="dim" style="font-size:12px;color:#8fa3bb;line-height:1.5;margin:12px 2px 14px;text-wrap:pretty">{{ pu.note }}</div>
+
+      <sc-if value="{{ pu.canStart }}" hint-placeholder-val="{{ true }}">
+        <button onClick="{{ pu.start }}" style="width:100%;height:56px;border:0;border-radius:15px;background:linear-gradient(180deg,#4ad06c,#2ba14c);color:#04160a;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 0 22px rgba(63,195,95,.3);cursor:pointer">{{ pu.startLabel }}</button>
+      </sc-if>
+
+      <sc-if value="{{ pu.isLive }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ pu.finish }}" style="width:100%;height:56px;border:0;border-radius:15px;background:linear-gradient(180deg,#ff8f63,#d1541f);color:#180903;font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 0 22px rgba(255,122,77,.36);cursor:pointer">■ Finish set</button>
+      </sc-if>
+
+      <sc-if value="{{ pu.isDone }}" hint-placeholder-val="{{ false }}">
+        <div>
+          <button onClick="{{ pu.save }}" style="width:100%;height:56px;border:0;border-radius:15px;background:linear-gradient(90deg,#3fc35f,#66ccff,#b557e6,#ffb627,#3fc35f);background-size:300% 100%;animation:plRainbow 4.5s linear infinite;color:#04160a;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">Save to today · {{ pu.saveKcal }} kcal</button>
+          <div style="display:flex;gap:9px;margin-top:10px">
+            <button onClick="{{ pu.start }}" data-s="btn" data-ink="mid" data-b="line" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.85);color:#cddaea;font-weight:800;font-size:14px;cursor:pointer">Discard, go again</button>
+            <button onClick="{{ pu.discard }}" data-s="btn" data-ink="red" data-b="line" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(232,73,63,.4);background:rgba(232,73,63,.12);color:#e8493f;font-weight:800;font-size:14px;cursor:pointer">Discard</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ pu.showOptions }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:9px;margin-top:10px">
+          <button onClick="{{ pu.flip }}" data-s="btn" data-ink="mid" data-b="line" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.85);color:#cddaea;font-weight:800;font-size:13px;cursor:pointer">{{ pu.flipLabel }}</button>
+          <button onClick="{{ pu.toggleVoice }}" data-s="btn" data-ink="mid" data-b="line" style="flex:1;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.14);background:rgba(20,29,43,.85);color:#cddaea;font-weight:800;font-size:13px;cursor:pointer">{{ pu.voiceLabel }}</button>
+        </div>
+      </sc-if>
+
+    </div>
   </div>
 </div>
 </sc-if>
@@ -1816,7 +2161,7 @@
 
     <div style="display:flex;gap:8px;margin-bottom:10px">
       <input value="{{ plan.q }}" onChange="{{ onPlanQ }}" placeholder="What are you having? e.g. chicken rice" data-s="field" data-ink="hi" style="flex:1;min-width:0;height:50px;background:#101826;border:1px solid rgba(102,204,255,.3);border-radius:13px;padding:0 14px;color:#eaf1fb;font-size:15px;outline:none">
-      <button onClick="{{ dict.planQ.toggle }}" style="width:50px;height:50px;border-radius:13px;flex:0 0 auto;border:1px solid {{ dict.planQ.border }};background:{{ dict.planQ.bg }};color:{{ dict.planQ.fg }};font-size:17px;cursor:pointer" aria-label="Dictate">{{ dict.planQ.icon }}</button>
+      <button onClick="{{ dict.planQ.toggle }}" style="width:50px;height:50px;border-radius:13px;flex:0 0 auto;border:1px solid {{ dict.planQ.border }};background:{{ dict.planQ.bg }};color:{{ dict.planQ.fg }};font-size:17px;cursor:pointer" aria-label="Dictate">{{ dict.planQ.label }}</button>
     </div>
     <button onClick="{{ planAsk }}" style="width:100%;height:52px;border:0;border-radius:14px;background:{{ plan.askBg }};color:{{ plan.askFg }};font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer">{{ plan.askLabel }}</button>
     <button onClick="{{ planDecide }}" data-ink="blue" style="width:100%;margin-top:9px;height:48px;border-radius:13px;border:1px solid rgba(102,204,255,.4);background:rgba(102,204,255,.12);color:#66ccff;font-weight:800;font-size:14px;cursor:pointer">Not decided — recommend something</button>
@@ -2257,23 +2602,23 @@
 <!-- ============ BOTTOM NAV ============ -->
 <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
 <div data-s="scrimbot" style="position:sticky;bottom:0;flex:0 0 auto;z-index:50;padding:10px 14px 14px;background:linear-gradient(180deg,rgba(4,7,12,0),rgba(4,7,12,.94) 55%)">
-  <div data-s="bar" data-b="hair" style="display:flex;align-items:center;gap:2px;background:rgba(10,19,32,.94);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:8px 6px;box-shadow:0 -6px 26px rgba(0,0,0,.5)">
-    <div style="flex:1;min-width:0;display:flex;gap:2px">
+  <div data-s="bar" data-b="hair" style="display:flex;align-items:center;gap:1px;background:rgba(10,19,32,.94);border:1px solid rgba(255,255,255,.09);border-radius:20px;padding:8px 3px;box-shadow:0 -6px 26px rgba(0,0,0,.5)">
+    <div style="flex:2 1 0%;min-width:0;display:flex;gap:2px">
       <sc-for list="{{ navLeft }}" as="n" hint-placeholder-count="2">
-        <button onClick="{{ n.go }}" style-hover="background:rgba(255,255,255,.06)" style="flex:1;height:52px;min-width:0;border:0;background:{{ n.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border-radius:14px">
+        <button onClick="{{ n.go }}" style-hover="background:rgba(255,255,255,.06)" style="flex:1;height:52px;min-width:0;overflow:hidden;border:0;background:{{ n.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border-radius:14px">
           <div style="font-size:16px;color:{{ n.color }};line-height:1">{{ n.icon }}</div>
-          <div style="font-size:9px;font-weight:800;letter-spacing:.02em;color:{{ n.color }}">{{ n.label }}</div>
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;color:{{ n.color }}">{{ n.label }}</div>
         </button>
       </sc-for>
     </div>
 
-    <button onClick="{{ openLog }}" style="width:58px;height:58px;flex:0 0 auto;margin:0 3px;border:0;border-radius:50%;background:linear-gradient(180deg,#4ad06c,#2ba14c);box-shadow:0 0 26px rgba(63,195,95,.5),0 3px 0 rgba(0,0,0,.4);color:#04160a;font-size:28px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1" aria-label="Log a plate">＋</button>
+    <button onClick="{{ openLog }}" style="width:52px;height:52px;flex:0 0 auto;margin:0 1px;border:0;border-radius:50%;background:linear-gradient(180deg,#4ad06c,#2ba14c);box-shadow:0 0 26px rgba(63,195,95,.5),0 3px 0 rgba(0,0,0,.4);color:#04160a;font-size:28px;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1" aria-label="Log a plate">＋</button>
 
-    <div style="flex:1;min-width:0;display:flex;gap:2px">
+    <div style="flex:3 1 0%;min-width:0;display:flex;gap:2px">
       <sc-for list="{{ navRight }}" as="n" hint-placeholder-count="3">
-        <button onClick="{{ n.go }}" style-hover="background:rgba(255,255,255,.06)" style="flex:1;height:52px;min-width:0;border:0;background:{{ n.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border-radius:14px">
+        <button onClick="{{ n.go }}" style-hover="background:rgba(255,255,255,.06)" style="flex:1;height:52px;min-width:0;overflow:hidden;border:0;background:{{ n.bg }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;border-radius:14px">
           <div style="font-size:16px;color:{{ n.color }};line-height:1">{{ n.icon }}</div>
-          <div style="font-size:9px;font-weight:800;letter-spacing:.02em;color:{{ n.color }}">{{ n.label }}</div>
+          <div style="font-size:10.5px;font-weight:800;letter-spacing:-.01em;white-space:nowrap;color:{{ n.color }}">{{ n.label }}</div>
         </button>
       </sc-for>
     </div>
@@ -2356,7 +2701,7 @@ class Component extends DCLogic {
     ringMove:'#c2185b', ringEx:'#3f7d00', ringStand:'#0a6ba8' };
   get H() { return (this.state && this.state.theme === 'light') ? this.PAL_LIGHT : this.PAL_DARK; }
   KEY = 'pl_v1';
-  VERSION = '1.4';
+  VERSION = '1.6';
   IDLE_MS = 8000;
 
   TOUR = [
@@ -2378,10 +2723,14 @@ class Component extends DCLogic {
   ];
 
   RELEASE = {
-    version: 'Version 1.4', date: 'August 2026', title: 'Clearer numbers, more of them.',
-    sub: 'Fibre and fat tracking, an unambiguous calorie ring, and daylight mode.',
+    version: 'Version 1.6', date: 'September 2026', title: 'Your phone counts the push-ups.',
+    sub: 'Prop it on the floor and go. Plus everything from 1.5: arcade sound, a shared squad leaderboard, and a real Apple Watch route.',
     cta: 'Start logging',
     items: [
+      { glyph:'💪', head:'Push-up counter', body:'Open the workout timer → Count my push-ups. The camera tracks your arm, counts every full rep out loud, and estimates the calories from your weight and pace. It all runs on your phone — no video is saved or sent.', hue:'#66ccff' },
+      { glyph:'🔊', head:'Arcade sound', body:'A coin-collect when a plate lands, a rising run when you clear your target, something sharper when you pass someone. Ordinary taps stay silent. Off in one tap: Me → Sound effects.', hue:'#b557e6' },
+      { glyph:'◉', head:'One shared leaderboard', body:'Sign in by email and everyone on your squad code lands on the same table. Only totals sync — your photos never leave your phone.', hue:'#3fc35f' },
+      { glyph:'⌚', head:'Apple Watch, for real', body:'A Shortcut route that reads your actual rings, or type the three figures yourself. No more pretend link.', hue:'#ff7a4d' },
       { glyph:'🌾', head:'Fibre and fat, tracked', body:'Both now sit in your weekly recap — fat as grams and share of intake, fibre against a 25–30 g target.', hue:'#3fc35f' },
       { glyph:'🎯', head:'The ring says what it means', body:'"Kcal left" now reads LEFT TO EAT, or OVER BUDGET past the line. It was never a burn target.', hue:'#66ccff' },
       { glyph:'☀', head:'Daylight mode', body:'A real light theme for sunlight and screenshots. Me → Appearance.', hue:'#ffb627' },
@@ -2393,6 +2742,7 @@ class Component extends DCLogic {
       { glyph:'⏱', head:'Honest numbers', body:'Sync times read properly past an hour, and empty plates can no longer reach your log.', hue:'#ffb627' }
     ],
     past: [
+      { version:'1.4', text:'Fibre and fat tracking, clearer calorie ring, daylight mode, four more music services.' },
       { version:'1.3', text:'Guided how-to tour, iPad and desktop layouts, next-meal planner, clearer tab names.' },
       { version:'1.2', text:'Apple Watch rings, measured targets, eat-back control, leftovers photo, streak wall.' },
       { version:'1.1', text:'Composite Plate Score, promotion and relegation, head-to-head duels.' },
@@ -2484,8 +2834,14 @@ class Component extends DCLogic {
     musicOn: false, musicVol: 0.5, vibe: 'tempo', beatStart: null,
     musicSource: 'builtin', lastMusicApp: null, musicWanted: true,
     exPickerOpen: false, exQuery: '', customMoves: [], customDraft: { name:'', met:5 }, workoutLog: [],
+    pu: { on:false, phase:'idle', facing:'user', voice:true, reps:0, kcal:0, activeSec:0, status:'noBody', err:'', startedAt:0, endedAt:0 },
     remindSlots: [ { h:12, m:0, on:true }, { h:18, m:0, on:true }, { h:20, m:0, on:true } ],
     toast: null, confetti: false, conv: { items: [], busy: false }, wide: false,
+    demo: true, hkManual: { move:'', exercise:'', stand:'', steps:'', resting:'' },
+    sfx: true,
+    keyMask: '', keyDraft: '', keyTest: null, keyTesting: false,
+    sb: { url:'', key:'', email:'', code:'', handle:'', busy:false, msg:null, sent:false },
+    sbPlayers: [], sbSyncedAt: null, sbUid: null, sbHandle: '',
     players: [
       { id:'kai', name:'Kai R.', initials:'KR', cons:7, def:5200, pro:96, pct:3.4, streak:31, delta:1, hue:'#ffb627', days:[210,190,230,180,240,200,150] },
       { id:'mara', name:'Mara L.', initials:'ML', cons:6, def:4600, pro:92, pct:3.1, streak:19, delta:-1, hue:'#66ccff', days:[180,200,160,220,190,170,140] },
@@ -2514,6 +2870,8 @@ class Component extends DCLogic {
         this.setState({ prof:s.prof||this.state.prof, meals:s.meals||[], weights:s.weights||this.state.weights,
           streak:s.streak??this.state.streak, freezes:s.freezes??this.state.freezes, week:s.week||this.state.week,
           wins:s.wins||0, promoted:!!s.promoted, reminders: s.reminders !== false, voiceSpeak: s.voiceSpeak !== false,
+          demo: s.demo !== false,
+          sfx: s.sfx !== false,
           remindSlots: (s.remindSlots && s.remindSlots.length)
             ? s.remindSlots.map(x => ({ h:x.h, m:x.m || 0, on:x.on !== false }))
             : this.state.remindSlots,
@@ -2547,13 +2905,27 @@ class Component extends DCLogic {
     window.addEventListener('resize', this._onResize);
     this.applyTheme(this.state.theme);
     this.importHealthFromUrl();
+    const k0 = this.getKey();
+    if (k0) this.setState({ keyMask: this.maskKey(k0) });
     this.bindIdle();
     this.later(() => this.scheduleReminders(), 400);
     this.restoreTimer();
+    this.sbCatchInvite();
+    this.sbCatchToken();
+    const c0 = this.sbCfg();
+    if (c0.url) this.setState(st => ({ sb: Object.assign({}, st.sb, { url:c0.url, key:c0.key||'', email:c0.email||'' }) }));
+    this.later(() => this.sbBootstrap(), 600);
+    // Keep the board fresh without hammering: pull only while the tab is visible.
+    this._sbTimer = setInterval(() => {
+      if (typeof document !== 'undefined' && document.hidden) return;
+      this.sbPull();
+    }, 90000);
   }
   componentWillUnmount() {
+    clearInterval(this._sbTimer);
     if (this._onResize) window.removeEventListener('resize', this._onResize);
     this.releaseBlobs();
+    this.puStopCamera();
     (this.timers||[]).forEach(clearTimeout);
     clearTimeout(this._idle); clearTimeout(this._rem); clearInterval(this._tick); clearInterval(this._sched);
     try { if (this._ac) this._ac.close(); } catch(e) {}
@@ -2569,7 +2941,7 @@ class Component extends DCLogic {
       clearTimeout(this._idle);
       this._idle = setTimeout(() => {
         const s = this.state;
-        if (s.news || s.sheetId || s.share.open || s.assistOpen || s.voiceOpen || s.profileOpen || s.timerOpen || s.exPickerOpen || s.plan.open || s.toast || s.log.step==='analyzing') return;
+        if (s.news || s.sheetId || s.share.open || s.assistOpen || s.voiceOpen || s.profileOpen || s.timerOpen || s.exPickerOpen || s.pu.on || s.plan.open || s.toast || s.log.step==='analyzing') return;
         this.setState({ hint:true });
         // Never leave the hint sitting on top of content.
         this.later(() => this.setState(st => st.hint ? { hint:false } : null), 9000);
@@ -2581,7 +2953,7 @@ class Component extends DCLogic {
   }
   persist(extra) {
     const s = Object.assign({}, this.state, extra||{});
-    try { localStorage.setItem(this.KEY, JSON.stringify({ prof:s.prof, meals:s.meals, weights:s.weights, streak:s.streak, freezes:s.freezes, week:s.week, onboarded:s.onboarded, metric:s.metric, health:s.health, wins:s.wins, promoted:s.promoted, reminders:s.reminders, voiceSpeak:s.voiceSpeak, remindSlots:s.remindSlots, musicSource:s.musicSource, lastMusicApp:s.lastMusicApp, vibe:s.vibe, customMoves:s.customMoves, workoutLog:s.workoutLog, savedPlan:s.savedPlan, theme:s.theme })); } catch(e) {}
+    try { localStorage.setItem(this.KEY, JSON.stringify({ prof:s.prof, meals:s.meals, weights:s.weights, streak:s.streak, freezes:s.freezes, week:s.week, onboarded:s.onboarded, metric:s.metric, demo:s.demo, sfx:s.sfx, health:s.health, wins:s.wins, promoted:s.promoted, reminders:s.reminders, voiceSpeak:s.voiceSpeak, remindSlots:s.remindSlots, musicSource:s.musicSource, lastMusicApp:s.lastMusicApp, vibe:s.vibe, customMoves:s.customMoves, workoutLog:s.workoutLog, savedPlan:s.savedPlan, theme:s.theme })); } catch(e) {}
   }
   later(fn, ms) { this.timers = this.timers || []; this.timers.push(setTimeout(fn, ms)); }
   // Adjusts the scale reading; the value is only committed to the trend by logWeighIn.
@@ -2621,7 +2993,20 @@ class Component extends DCLogic {
   }
 
   // Health is only trusted once it reports something; otherwise fall back to the estimate.
-  hasHealth() { const h = this.state.health; return h.connected && (h.resting > 0 || h.move > 0); }
+  // Yesterday's rings are not today's burn. A stale import must not spend calories:
+  // over two weeks a single typed reading was crediting ~3,200 phantom kcal.
+  healthFresh() {
+    const h = this.state.health;
+    if (!h.connected || !h.syncedAt) return false;
+    return new Date(h.syncedAt).toDateString() === new Date().toDateString();
+  }
+  healthStaleDays() {
+    const h = this.state.health;
+    if (!h.syncedAt) return null;
+    return Math.floor((Date.now() - h.syncedAt) / 864e5);
+  }
+  hasHealth() { const h = this.state.health;
+    return this.healthFresh() && (h.resting > 0 || h.move > 0); }
 
   // ---------- math ----------
   nut(items) {
@@ -2645,7 +3030,7 @@ class Component extends DCLogic {
     return { tdee, deficit, base, credit, target: base + credit, protein };
   }
   earned() { const H = this.state.health;
-    return H.connected ? H.workouts.reduce((a,w)=>a+w.kcal, 0) : 0; }
+    return this.healthFresh() ? H.workouts.reduce((a,w)=>a+w.kcal, 0) : 0; }
   today() {
     const T = this.targets(); const n = { k:0,p:0,c:0,f:0,fb:0 };
     this.state.meals.forEach(m => { const x=this.mealNut(m); n.k+=x.k; n.p+=x.p; n.c+=x.c; n.f+=x.f; n.fb+=(x.fb||0); });
@@ -2702,9 +3087,17 @@ class Component extends DCLogic {
     if (m==='def') return x.def.toLocaleString();
     return this.composite(x).toLocaleString();
   }
+  // The nine rivals are demo data. A real deployment starts empty — one person on
+  // their own table — until they invite people. New users still see the demo so the
+  // league screens are not a blank page on day one.
+  livePlayers() {
+    // A linked squad is the truth. Demo fixtures only fill an unlinked board.
+    if (this.sbLinked()) return this.state.sbPlayers || [];
+    return this.state.demo === false ? [] : this.state.players;
+  }
   ranked() {
     const m = this.state.metric;
-    const all = this.state.players.concat([this.me()]);
+    const all = this.livePlayers().concat([this.me()]);
     return all.sort((a,b)=>this.metricOf(b,m)-this.metricOf(a,m));
   }
   myRank() { const r = this.ranked(); return r.findIndex(x=>x.id==='me')+1; }
@@ -2767,6 +3160,38 @@ class Component extends DCLogic {
     if (d < 7) return d + (d === 1 ? ' day ago' : ' days ago');
     const w = Math.round(d/7);
     return w < 5 ? w + (w === 1 ? ' week ago' : ' weeks ago') : 'over a month ago';
+  }
+  hkSet(k, e) {
+    const v = String(e.target.value || '').replace(/[^0-9]/g, '').slice(0, 6);
+    this.setState(st => ({ hkManual: Object.assign({}, st.hkManual, { [k]: v }) }));
+  }
+  copyText(t, msg) {
+    const done = () => this.fire(msg, 'Paste it wherever you need it.', '⧉', this.H.p);
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText)
+        return navigator.clipboard.writeText(t).then(done, () => this.copyFallback(t, done));
+    } catch(e) {}
+    this.copyFallback(t, done);
+  }
+  copyFallback(t, done) {
+    try {
+      const ta = document.createElement('textarea');
+      ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      done();
+    } catch(e) { this.fire('Could not copy', 'Select the text and copy it manually.', '!', this.H.red); }
+  }
+  // Duration, not a point in time: "2 weeks old" fits after a verb ("figures are …"),
+  // where ago()'s "2 weeks ago" does not.
+  age(mins) {
+    if (mins < 2) return 'from just now';
+    if (mins < 60) return mins + ' minutes old';
+    const h = Math.round(mins/60);
+    if (h < 24) return h + (h === 1 ? ' hour old' : ' hours old');
+    const d = Math.round(h/24);
+    if (d < 7) return d + (d === 1 ? ' day old' : ' days old');
+    const w = Math.round(d/7);
+    return w < 5 ? w + (w === 1 ? ' week old' : ' weeks old') : 'over a month old';
   }
   ord(n) { const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
 
@@ -2868,9 +3293,9 @@ class Component extends DCLogic {
         run: () => { this.setState({ reminders:true }, ()=>{ this.persist(); this.scheduleReminders(); }); this.askNotifyPermission();
           return 'Check-ins on for midday, six and eight.'; } },
       { id:'health', re:/\b(health|watch|apple watch|rings|steps|activity)\b/,
-        run: () => { const h=this.state.health; this.goto('home');
-          if (!h.connected) { this.setState(s=>({ health:Object.assign({}, s.health, { connected:true, syncedAt:Date.now() }) }), ()=>this.persist());
-            return 'Health linked.'; }
+        run: () => { const h=this.state.health;
+          if (!h.connected) { this.goto('hk'); return 'Opening Apple Watch setup — it needs a Shortcut on your phone.'; }
+          this.goto('home');
           return h.steps.toLocaleString() + ' steps, ' + h.move + ' active calories, ' + h.exercise + ' exercise minutes.'; } },
       { id:'history', re:/\b(history|past|yesterday|search|find)\b/,
         run: (t) => { const m = t.match(/(?:search|find)\s+(.+)$/);
@@ -3156,6 +3581,84 @@ class Component extends DCLogic {
       return this._ac;
     } catch(e) { return null; }
   }
+  // ---------- Arcade SFX ----------
+  // Generated, not sampled: no audio files, nothing to download, works offline.
+  // Wins make noise. Ordinary taps stay silent — a calorie app that chirps in a
+  // café gets muted permanently, and a muted app has no feedback at all.
+  sfxBus() {
+    const ac = this.ensureAudio();
+    if (!ac) return null;
+    if (!this._sfx) {
+      this._sfx = ac.createGain();
+      this._sfx.gain.value = 0.9;
+      this._sfx.connect(this._comp);
+    }
+    return ac;
+  }
+  sfxOn() { return this.state.sfx !== false; }
+  // One voice: a shaped oscillator burst. Everything below is built from these.
+  blip(t, freq, dur, opt) {
+    const o = opt || {}, ac = this._ac;
+    const osc = ac.createOscillator(), g = ac.createGain();
+    osc.type = o.type || 'square';
+    osc.frequency.setValueAtTime(freq, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(Math.max(20, o.to), t + dur);
+    const peak = o.gain == null ? 0.2 : o.gain;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(peak, t + Math.min(0.012, dur * 0.25));
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let tail = g;
+    if (o.bright) { const f = ac.createBiquadFilter();
+      f.type = 'lowpass'; f.frequency.value = o.bright; g.connect(f); tail = f; }
+    osc.connect(g); tail.connect(this._sfx);
+    osc.start(t); osc.stop(t + dur + 0.02);
+  }
+  tick(t, freq, gain) {
+    const ac = this._ac, src = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+    src.buffer = this.noiseBuf();
+    f.type = 'bandpass'; f.frequency.value = freq || 2400; f.Q.value = 1.4;
+    g.gain.setValueAtTime(gain == null ? 0.16 : gain, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06);
+    src.connect(f); f.connect(g); g.connect(this._sfx);
+    src.start(t); src.stop(t + 0.08);
+  }
+  SFX = {
+    // Plate accepted — a coin-collect two-note, the workhorse sound.
+    log: (t, self) => { self.blip(t, 784, 0.07, { gain: 0.17 });
+      self.blip(t + 0.055, 1175, 0.18, { gain: 0.15, bright: 5200 }); },
+    // Target cleared — rising major arpeggio.
+    win: (t, self) => { [523, 659, 784, 1047].forEach((f, i) =>
+      self.blip(t + i * 0.065, f, 0.2, { gain: 0.16, type: 'square', bright: 6000 }));
+      self.blip(t + 0.26, 1568, 0.34, { gain: 0.12, type: 'triangle' }); },
+    // Overtook someone — sharper, with a bend, so it reads as aggression not praise.
+    pass: (t, self) => { self.blip(t, 440, 0.09, { to: 880, gain: 0.18, type: 'sawtooth', bright: 3400 });
+      self.blip(t + 0.09, 1319, 0.16, { gain: 0.14 });
+      self.tick(t + 0.09, 3200, 0.1); },
+    // Badge or duel won — the big one.
+    fanfare: (t, self) => { [392, 523, 659].forEach((f, i) =>
+        self.blip(t + i * 0.08, f, 0.26, { gain: 0.15, bright: 5000 }));
+      [784, 988, 1175].forEach((f, i) =>
+        self.blip(t + 0.26 + i * 0.05, f, 0.42, { gain: 0.13, type: 'square', bright: 7000 }));
+      self.tick(t + 0.26, 5200, 0.09); },
+    // Streak extended — a quick double tick, almost mechanical.
+    streak: (t, self) => { self.tick(t, 2600, 0.13);
+      self.blip(t + 0.04, 1047, 0.12, { gain: 0.13, type: 'triangle' });
+      self.blip(t + 0.12, 1319, 0.16, { gain: 0.11, type: 'triangle' }); },
+    // Timer done — three even beeps, the universal "stop" signal.
+    done: (t, self) => { [880, 880, 1175].forEach((f, i) =>
+      self.blip(t + i * 0.16, f, 0.13, { gain: 0.17, type: 'square' })); },
+    // Refusal — a downward minor step. Brief, never harsh.
+    nope: (t, self) => { self.blip(t, 311, 0.1, { gain: 0.14, type: 'triangle' });
+      self.blip(t + 0.1, 233, 0.2, { gain: 0.12, type: 'triangle' }); }
+  };
+  sfx(name) {
+    if (!this.sfxOn()) return;
+    const ac = this.sfxBus();
+    if (!ac) return;
+    const fn = this.SFX[name];
+    if (!fn) return;
+    try { fn(ac.currentTime + 0.015, this); } catch(e) {}
+  }
   noiseBuf() {
     if (this._noise) return this._noise;
     const ac = this._ac, len = ac.sampleRate * 0.4;
@@ -3322,7 +3825,7 @@ class Component extends DCLogic {
       if (!t.startedAt) return;
       if (t.mode === 'down' && this.timerElapsed() >= t.targetMs) {
         this.setState(s => ({ timer: Object.assign({}, s.timer, { accMs: s.timer.targetMs, startedAt: null, done: true }) }),
-          () => { this.saveTimerState(); this.celebrate(true);
+          () => { this.saveTimerState(); this.sfx('done'); this.celebrate(true);
             const mins = Math.round(this.state.timer.targetMs/60000);
             const kcal = Math.round(this.timerKcalPerMin(this.state.timer.met) * mins);
             if (this.state.musicOn) { this.stopMusic(true); this.finishFanfare(); }
@@ -3372,22 +3875,229 @@ class Component extends DCLogic {
     const mins = Math.max(1, Math.round(ms/60000));
     const kcal = Math.round(this.timerKcalPerMin(t.met) * mins);
     clearInterval(this._tick);
-    const entry = { ts: Date.now(), name: t.name, glyph: t.glyph, mins, kcal, met: t.met };
-    this.setState(s => ({
+    this.logWorkout({ ts: Date.now(), name: t.name, glyph: t.glyph, mins, kcal, met: t.met },
+      s => ({ timer: Object.assign({}, s.timer, { accMs:0, startedAt:null, done:false }), timerOpen: false }),
+      () => { this.saveTimerState();
+        this.fire('+' + kcal + ' kcal logged', mins + ' min of ' + t.name.toLowerCase() + ' added to today.', '↑', this.H.orange); });
+  }
+  // Every saved session — timer or push-up counter — lands through here, so the
+  // exercise log and the health rings can never disagree.
+  logWorkout(entry, extra, after) {
+    this.setState(s => Object.assign({
       workoutLog: [entry].concat(s.workoutLog || []).slice(0, 400),
-      timer: Object.assign({}, s.timer, { accMs:0, startedAt:null, done:false }),
-      timerOpen: false,
       health: Object.assign({}, s.health, {
         connected: true, syncedAt: Date.now(),
-        move: s.health.move + kcal,
-        exercise: s.health.exercise + mins,
+        move: s.health.move + entry.kcal,
+        exercise: s.health.exercise + entry.mins,
         resting: s.health.resting || Math.round((s.prof.sex==='m'
           ? 10*s.prof.w+6.25*s.prof.h-5*s.prof.age+5
           : 10*s.prof.w+6.25*s.prof.h-5*s.prof.age-161)),
-        workouts: s.health.workouts.concat([{ name:t.name, glyph:t.glyph, mins, kcal, hr:'—' }])
+        workouts: s.health.workouts.concat([{ name:entry.name, glyph:entry.glyph, mins:entry.mins, kcal:entry.kcal, hr:'—' }])
       })
-    }), () => { this.persist(); this.saveTimerState(); this.celebrate(false);
-      this.fire('+' + kcal + ' kcal logged', mins + ' min of ' + t.name.toLowerCase() + ' added to today.', '↑', this.H.orange); });
+    }, extra ? extra(s) : {}), () => { this.persist(); this.celebrate(false); if (after) after(); });
+  }
+
+  // ---------- push-up counter ----------
+  // Pose tracking runs entirely on this device (MediaPipe, lazy-loaded like the HEIC
+  // decoder). Frames are read, measured and dropped — nothing is stored or uploaded.
+  PU_LIB = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+  PU_MODEL = 'https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker_lite.task';
+  // Elbow angle in degrees. The gap between the two is hysteresis: a rep is only
+  // a rep when the arm really bends AND really straightens, so jitter cannot count.
+  PU_DOWN = 100; PU_UP = 150; PU_MIN_REP_MS = 350;
+
+  puSet(patch, cb) { this.setState(s => ({ pu: Object.assign({}, s.pu, patch) }), cb); }
+  puOpen() {
+    this.puStopCamera();
+    this.puSet({ on:true, phase:'idle', reps:0, kcal:0, activeSec:0, status:'noBody', err:'', startedAt:0, endedAt:0 });
+    this.setState({ hint:false });
+  }
+  puClose() {
+    // Closing mid-set must not throw the reps away — land on the summary first.
+    if (this.state.pu.phase === 'live' && this.state.pu.reps > 0) { this.puFinish(); return; }
+    this.puStopCamera();
+    this.puSet({ on:false, phase:'idle' });
+  }
+  puStopCamera() {
+    try { cancelAnimationFrame(this._puRaf); } catch(e) {}
+    clearInterval(this._puClock);
+    if (this._puStream) { try { this._puStream.getTracks().forEach(t => t.stop()); } catch(e) {} }
+    this._puStream = null;
+    const v = this.puVideoRef && this.puVideoRef.current;
+    if (v) { try { v.pause(); v.srcObject = null; } catch(e) {} }
+    const c = this.puCanvasRef && this.puCanvasRef.current;
+    if (c) { try { c.getContext('2d').clearRect(0, 0, c.width, c.height); } catch(e) {} }
+    if (this._puWake) { try { this._puWake.release(); } catch(e) {} this._puWake = null; }
+  }
+  puLoadModel() {
+    if (this._puLm) return Promise.resolve(this._puLm);
+    if (this._puLmP) return this._puLmP;
+    this._puLmP = (async () => {
+      const vis = await import(this.PU_LIB + '/vision_bundle.mjs');
+      const files = await vis.FilesetResolver.forVisionTasks(this.PU_LIB + '/wasm');
+      const make = delegate => vis.PoseLandmarker.createFromOptions(files, {
+        baseOptions: { modelAssetPath: this.PU_MODEL, delegate }, runningMode: 'VIDEO', numPoses: 1 });
+      let lm; try { lm = await make('GPU'); } catch(e) { lm = await make('CPU'); }
+      return (this._puLm = lm);
+    })().catch(e => { this._puLmP = null; throw e; });
+    return this._puLmP;
+  }
+  async puStart() {
+    if (this._puStarting) return;
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      this.puSet({ phase:'error', err:'This browser cannot open the camera here. Open the app in Safari or Chrome on its https address.' }); return; }
+    this._puStarting = true;
+    this.puStopCamera();
+    this._puRun = { stage:null, downAt:0, lastRepAt:0, lockAt:0, angle:null, status:'noBody' };
+    this.puSet({ phase:'loading', reps:0, kcal:0, activeSec:0, status:'noBody', err:'', startedAt:0, endedAt:0 });
+    this.puSay('');   // iOS only lets speech start from a tap — this unlocks it for the count.
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio:false,
+        video:{ facingMode:this.state.pu.facing, width:{ ideal:640 }, height:{ ideal:480 } } });
+      if (!this.state.pu.on || this.state.pu.phase !== 'loading') { stream.getTracks().forEach(t => t.stop()); return; }
+      this._puStream = stream;
+      const v = this.puVideoRef.current;
+      v.muted = true; v.setAttribute('playsinline', ''); v.srcObject = stream;
+      await v.play();
+      await this.puLoadModel();
+      if (!this.state.pu.on || this.state.pu.phase !== 'loading') { this.puStopCamera(); return; }
+      try { if (navigator.wakeLock) this._puWake = await navigator.wakeLock.request('screen'); } catch(e) {}
+      this.puSet({ phase:'live', startedAt:Date.now() }, () => this.puLoop());
+      clearInterval(this._puClock);
+      this._puClock = setInterval(() => this.forceUpdate(), 500);
+    } catch(e) {
+      this.puStopCamera();
+      const n = (e && e.name) || '';
+      this.puSet({ phase:'error', err:
+        n === 'NotAllowedError' || n === 'SecurityError' ? 'Camera access is blocked. Allow the camera for this site in your browser settings, then try again.'
+        : n === 'NotFoundError' || n === 'OverconstrainedError' ? 'No camera was found on this device.'
+        : n === 'NotReadableError' ? 'Another app is using the camera. Close it and try again.'
+        : 'The motion tracker did not load — check your connection and try again. (' + ((e && e.message) || 'unknown') + ')' });
+    } finally { this._puStarting = false; }
+  }
+  puLoop() {
+    const step = () => {
+      if (!this._puStream || this.state.pu.phase !== 'live') return;
+      this._puRaf = requestAnimationFrame(step);
+      const v = this.puVideoRef && this.puVideoRef.current;
+      if (!v || v.readyState < 2 || v.currentTime === this._puLastT) return;
+      this._puLastT = v.currentTime;
+      let res = null;
+      try { res = this._puLm.detectForVideo(v, performance.now()); } catch(e) { return; }
+      const sample = this.puRead(res);
+      this.puDraw(sample, v);
+      this.puStep(sample, performance.now());
+    };
+    this._puRaf = requestAnimationFrame(step);
+  }
+  // Turns one frame of landmarks into { seen, plank, angle }. Pure — no state touched.
+  puRead(res) {
+    const lm = res && res.landmarks && res.landmarks[0];
+    if (!lm) return { seen:false };
+    const w3 = res.worldLandmarks && res.worldLandmarks[0];
+    const vis = i => (lm[i] && (lm[i].visibility === undefined ? 1 : lm[i].visibility)) || 0;
+    // Work from whichever arm the camera sees best: [shoulder, elbow, wrist, hip, ankle].
+    const L = [11, 13, 15, 23, 27], R = [12, 14, 16, 24, 28];
+    const score = ids => (vis(ids[0]) + vis(ids[1]) + vis(ids[2])) / 3;
+    const ids = score(L) >= score(R) ? L : R;
+    if (Math.min(vis(ids[0]), vis(ids[1]), vis(ids[2])) < 0.5) return { seen:false };
+    const src = w3 || lm;
+    const S = src[ids[0]], E = src[ids[1]], W = src[ids[2]], Hp = src[ids[3]];
+    const sub = (a, b) => ({ x:a.x-b.x, y:a.y-b.y, z:(a.z||0)-(b.z||0) });
+    const len = a => Math.hypot(a.x, a.y, a.z) || 1e-6;
+    const a = sub(S, E), b = sub(W, E);
+    const angle = Math.acos(Math.max(-1, Math.min(1, (a.x*b.x + a.y*b.y + a.z*b.z) / (len(a)*len(b))))) * 180 / Math.PI;
+    // Plank test: hands below shoulders, and the torso leaning well away from upright.
+    // Standing in front of the camera bending your arms must not score.
+    let plank = lm[ids[2]].y > lm[ids[0]].y;
+    if (plank && vis(ids[3]) >= 0.3) {
+      const t = sub(S, Hp);
+      const lean = Math.atan2(Math.hypot(t.x, t.z), Math.abs(t.y)) * 180 / Math.PI;
+      plank = lean > 40;
+    }
+    return { seen:true, plank, angle, pts: ids.map(i => lm[i]), vis: ids.map(vis) };
+  }
+  // Calories for one rep. Compendium of Physical Activities: push-ups run 3.8 MET at an
+  // easy pace to 8.0 MET flat out. Tempo picks the point between, bodyweight scales it
+  // (same formula as the timer), and rest between sets is never billed.
+  puRepKcal(dtSec) {
+    const dt = Math.max(1, Math.min(4, dtSec));
+    const met = Math.max(3.8, Math.min(8, 3.8 + (60/dt - 10) * 0.21));
+    return { kcal: this.timerKcalPerMin(met) * dt / 60, sec: dt };
+  }
+  // The rep state machine. Fed one sample per frame; only touches React state when
+  // something the user can see has changed.
+  puStep(sample, now) {
+    const r = this._puRun; if (!r) return;
+    let status = r.status;
+    if (!sample.seen) { status = 'noBody'; r.angle = null; }
+    else if (!sample.plank) { status = 'notPlank'; r.angle = null; if (r.stage === 'down') r.stage = 'up'; }
+    else {
+      r.angle = r.angle === null ? sample.angle : r.angle * 0.55 + sample.angle * 0.45;
+      if (r.stage === null) { if (r.angle > this.PU_UP) { r.stage = 'up'; r.lockAt = now; this.puSay('Go'); } status = r.stage ? 'up' : 'straighten'; }
+      else if (r.stage === 'up') { if (r.angle < this.PU_DOWN) { r.stage = 'down'; r.downAt = now; } status = r.stage; }
+      else if (r.stage === 'down') {
+        if (r.angle > this.PU_UP) {
+          r.stage = 'up';
+          if (now - r.downAt >= this.PU_MIN_REP_MS / 2 && now - (r.lastRepAt || 0) >= this.PU_MIN_REP_MS) {
+            const since = (now - (r.lastRepAt || r.lockAt || now)) / 1000;
+            const c = this.puRepKcal(since || 2);
+            r.lastRepAt = now; r.status = 'up';
+            const reps = this.state.pu.reps + 1;
+            this.puSet({ reps, kcal: this.state.pu.kcal + c.kcal, activeSec: this.state.pu.activeSec + c.sec, status:'up' });
+            this.buzz(14); this.puSay(String(reps));
+            return;
+          }
+        }
+        status = r.stage;
+      }
+    }
+    if (status !== r.status) { r.status = status; this.puSet({ status }); }
+  }
+  puDraw(sample, v) {
+    const c = this.puCanvasRef && this.puCanvasRef.current; if (!c) return;
+    if (c.width !== v.videoWidth || c.height !== v.videoHeight) { c.width = v.videoWidth || 640; c.height = v.videoHeight || 480; }
+    const g = c.getContext('2d'); g.clearRect(0, 0, c.width, c.height);
+    if (!sample.seen) return;
+    const P = this.PAL_DARK, hue = sample.plank ? P.k : P.gold;
+    const pt = p => [p.x * c.width, p.y * c.height];
+    const [S, E, W, Hp, An] = sample.pts.map(pt);
+    g.lineWidth = Math.max(4, c.width / 90); g.lineCap = 'round'; g.strokeStyle = hue; g.fillStyle = P.ink;
+    const line = pts => { g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1])); g.stroke(); };
+    line([S, E, W]);
+    if (sample.vis[3] >= 0.3) line(sample.vis[4] >= 0.3 ? [S, Hp, An] : [S, Hp]);
+    [S, E, W].forEach(p => { g.beginPath(); g.arc(p[0], p[1], g.lineWidth * 0.9, 0, Math.PI * 2); g.fill(); });
+  }
+  puSay(text) {
+    if (!this.state.pu.voice) return;
+    try { const ss = window.speechSynthesis; if (!ss) return;
+      ss.cancel(); const u = new SpeechSynthesisUtterance(text); u.rate = 1.15; u.volume = 1; ss.speak(u); } catch(e) {}
+  }
+  puFinish() {
+    this.puStopCamera();
+    if (!this.state.pu.reps) { this.puSet({ phase:'idle', endedAt:0, startedAt:0 });
+      this.fire('No reps counted', 'Nothing to save. Check the camera can see your whole arm.', '○', this.H.dim); return; }
+    this.puSet({ phase:'done', endedAt:Date.now() });
+    this.sfx('done');
+    this.puSay(this.state.pu.reps + ' push ups.');
+  }
+  // Manual correction on the summary. Calories follow at this set's own average per rep;
+  // a set with no tracked reps falls back to a steady 3-second rep.
+  puAdjust(d) {
+    const p = this.state.pu, reps = Math.max(0, p.reps + d);
+    if (reps === p.reps) return;
+    const per = p.reps > 0 ? { kcal: p.kcal / p.reps, sec: p.activeSec / p.reps } : this.puRepKcal(3);
+    this.puSet({ reps, kcal: per.kcal * reps, activeSec: per.sec * reps });
+  }
+  puSave() {
+    const p = this.state.pu;
+    if (p.phase !== 'done' || !p.reps) return;
+    const kcal = Math.max(1, Math.round(p.kcal));
+    const mins = Math.max(1, Math.round(p.activeSec / 60));
+    const met = Math.round(p.kcal / Math.max(1e-6, this.timerKcalPerMin(1) * p.activeSec / 60) * 10) / 10;
+    this.logWorkout({ ts: Date.now(), name:'Push-ups', glyph:'💪', mins, kcal, met, reps:p.reps },
+      s => ({ pu: Object.assign({}, s.pu, { on:false, phase:'idle' }), timerOpen:false }),
+      () => this.fire(p.reps + ' push-ups logged', 'About ' + kcal + ' kcal added to today.', '↑', this.H.orange));
   }
   fmtClock(ms) {
     const s = Math.max(0, Math.floor(ms/1000));
@@ -3600,7 +4310,11 @@ class Component extends DCLogic {
       evidence:'Late eating does not change the arithmetic, but it does change your control — evening portions are the least measured of the day.',
       action:'Move 300 kcal of tonight into breakfast. You will make the same total with a much smaller chance of the 22:00 overshoot.' });
 
-    if (Hh.connected && Hh.eatBack >= 100) out.push({ sev:2, tag:'Watch', color:this.H.orange,
+    if (Hh.connected && !this.healthFresh() && (Hh.workouts||[]).length) out.push({ sev:2, tag:'Watch', color:this.H.orange,
+      title:'Your training figures are ' + this.age(Math.max(2, Math.round((Date.now()-Hh.syncedAt)/60000))) + '.',
+      evidence:'No calories are being credited from them — stale numbers would inflate your target every day for training that never happened.',
+      action:'Re-run your Shortcut, or type today\'s rings in Me → Apple Watch & Health.' });
+    if (Hh.connected && this.healthFresh() && Hh.eatBack >= 100) out.push({ sev:2, tag:'Watch', color:this.H.orange,
       title:'You are eating back all of your training calories.',
       evidence:'Today that is '+this.earned()+' kcal added to target. Wrist devices typically overread active burn by 20-40% on non-cardio work.',
       action:'Drop to 50%. If your weight keeps falling at the rate you asked for, you were right; if it stalls, this was the reason.' });
@@ -3668,19 +4382,278 @@ class Component extends DCLogic {
     // static hosts cannot, so do not promise analysis we cannot deliver.
     return typeof location !== 'undefined' && /^https?:$/.test(location.protocol);
   }
+  // A one-token round trip proves the key works before we store it — better than
+  // finding out at the moment someone photographs their dinner.
+  KEY_SHAPE = /^sk-ant-[\w-]{20,}$/;
+  async testAndSaveKey() {
+    // Every request here is billable, so refuse before the network, not after.
+    if (this.state.keyTesting) return;
+    const k = (this.state.keyDraft || '').trim();
+    if (!this.KEY_SHAPE.test(k)) return;
+    this.setState({ keyTesting: true, keyTest: null });
+    try {
+      await this.callAnthropic({ max_tokens: 4, messages: [{ role:'user', content:'hi' }] }, k);
+      this.setKey(k);
+      this._apiOk = undefined;
+      this.setState({ keyTesting: false, keyMask: this.maskKey(k), keyDraft: '',
+        keyTest: { ok: true, msg: 'Key works. Photo analysis is on.' } });
+      this.celebrate(false);
+      this.fire('AI switched on', 'Your next plate photo gets a real reading.', '⚿', this.H.k);
+    } catch (e) {
+      this.setState({ keyTesting: false, keyTest: { ok: false, msg: String((e && e.message) || e).slice(0, 110) } });
+    }
+  }
+  // ---------- Shared squad (Supabase) ----------
+  // Only daily totals travel. Photos never leave the device that took them.
+  SB_STORE = 'pl_v1_sb';
+  sbCfg() { try { return JSON.parse(localStorage.getItem(this.SB_STORE) || '{}'); } catch(e) { return {}; } }
+  sbSave(patch) { const n = Object.assign(this.sbCfg(), patch);
+    try { localStorage.setItem(this.SB_STORE, JSON.stringify(n)); } catch(e) {} return n; }
+  sbWipe() { try { localStorage.removeItem(this.SB_STORE); } catch(e) {} }
+  sbLinked() { const c = this.sbCfg(); return !!(c.url && c.key && c.token && c.uid); }
+  sbHasProject() { const c = this.sbCfg(); return !!(c.url && c.key); }
+
+  async sbFetch(path, opts) {
+    const c = this.sbCfg(), o = opts || {};
+    if (!c.url || !c.key) throw new Error('No project connected');
+    const r = await fetch(c.url.replace(/\/+$/, '') + path, {
+      method: o.method || 'GET',
+      headers: Object.assign({ apikey: c.key, authorization: 'Bearer ' + (c.token || c.key),
+        'content-type': 'application/json' }, o.headers || {}),
+      body: o.body ? JSON.stringify(o.body) : undefined
+    });
+    const txt = await r.text();
+    let j = null; try { j = txt ? JSON.parse(txt) : null; } catch(e) {}
+    if (!r.ok) throw new Error((j && (j.message || j.error_description || j.msg || j.error)) || ('HTTP ' + r.status));
+    return j;
+  }
+
+  async sbSendLink() {
+    const c = this.sbCfg(), email = (this.state.sb.email || '').trim();
+    if (!c.url || !c.key) { this.sbMsg(false, 'Add the project URL and key first.'); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { this.sbMsg(false, 'That does not look like an email address.'); return; }
+    if (this.state.sb.busy) return;
+    this.sbBusy(true);
+    try {
+      const back = location.origin + location.pathname;
+      const r = await fetch(c.url.replace(/\/+$/, '') + '/auth/v1/otp?redirect_to=' + encodeURIComponent(back), {
+        method: 'POST', headers: { apikey: c.key, 'content-type': 'application/json' },
+        body: JSON.stringify({ email, create_user: true })
+      });
+      if (!r.ok) { const t = await r.text(); throw new Error(t.slice(0, 120)); }
+      this.sbSave({ email });
+      this.setState(st => ({ sb: Object.assign({}, st.sb, { busy:false, sent:true,
+        msg:{ ok:true, text:'Check ' + email + '. Tap the link on this device — it signs you in and comes straight back here.' } }) }));
+    } catch(e) { this.sbMsg(false, 'Could not send: ' + ((e && e.message) || 'unknown')); }
+  }
+
+  // The magic link returns with the session in the URL fragment.
+  sbCatchToken() {
+    const h = (typeof location !== 'undefined' && location.hash) || '';
+    if (h.indexOf('access_token=') < 0) return false;
+    let token = null;
+    try { token = new URLSearchParams(h.replace(/^#/, '')).get('access_token'); } catch(e) {}
+    if (!token) return false;
+    this.sbSave({ token });
+    try { history.replaceState(null, '', location.pathname + location.search); } catch(e) {}
+    return true;
+  }
+
+  // An invite link carries the project details so nobody else has to paste keys.
+  sbCatchInvite() {
+    let q = null;
+    try { q = new URLSearchParams(location.search).get('join'); } catch(e) {}
+    if (!q) return false;
+    try {
+      const j = JSON.parse(atob(q));
+      if (!j.u || !j.k) return false;
+      this.sbSave({ url: j.u, key: j.k, pendingCode: j.c || '' });
+      this.setState(st => ({ sb: Object.assign({}, st.sb, { url:j.u, key:j.k, code:j.c || '' }) }));
+      try { history.replaceState(null, '', location.pathname); } catch(e) {}
+      return true;
+    } catch(e) { return false; }
+  }
+
+  async sbBootstrap() {
+    if (!this.sbHasProject()) return;
+    const c = this.sbCfg();
+    if (!c.token) return;
+    try {
+      const u = await this.sbFetch('/auth/v1/user');
+      if (!u || !u.id) throw new Error('Session expired');
+      this.sbSave({ uid: u.id, email: u.email || c.email || '' });
+      // Make sure a profile row exists before anything tries to read it.
+      const mine = await this.sbFetch('/rest/v1/profiles?select=*&id=eq.' + u.id);
+      let prof = (mine || [])[0];
+      if (!prof) {
+        const handle = this.state.prof.name && this.state.prof.name !== 'You' ? this.state.prof.name : (u.email || 'Player').split('@')[0];
+        await this.sbFetch('/rest/v1/profiles', { method:'POST', headers:{ prefer:'return=minimal' },
+          body: [{ id: u.id, handle, hue: '#3fc35f', squad_code: c.pendingCode || '' }] });
+        prof = { handle, squad_code: c.pendingCode || '' };
+      } else if (c.pendingCode && !prof.squad_code) {
+        await this.sbJoin(c.pendingCode, true);
+        prof.squad_code = c.pendingCode;
+      }
+      this.sbSave({ pendingCode: '' });
+      this.setState(st => ({ sbUid: u.id, sbHandle: prof.handle || '',
+        sb: Object.assign({}, st.sb, { handle: prof.handle || '', code: prof.squad_code || '', email: u.email || '' }) }));
+      await this.sbPush();
+      await this.sbPull();
+    } catch(e) {
+      this.setState(st => ({ sb: Object.assign({}, st.sb, { msg:{ ok:false, text:'Sign-in expired — send yourself a fresh link.' } }) }));
+      this.sbSave({ token: '', uid: '' });
+    }
+  }
+
+  async sbJoin(code, quiet) {
+    const c = this.sbCfg();
+    if (!c.uid) return;
+    const clean = String(code || '').trim().toUpperCase();
+    try {
+      await this.sbFetch('/rest/v1/profiles?id=eq.' + c.uid, { method:'PATCH',
+        headers:{ prefer:'return=minimal' },
+        body: { squad_code: clean, handle: (this.state.sb.handle || this.state.sbHandle || 'Player'), updated_at: new Date().toISOString() } });
+      this.setState(st => ({ sb: Object.assign({}, st.sb, { code: clean }) }));
+      if (!quiet) { this.fire(clean ? 'Squad joined' : 'Left the squad',
+        clean ? 'Everyone using ' + clean + ' now shows on your board.' : 'Your board is just you again.', '◉', this.H.k); }
+      await this.sbPull();
+    } catch(e) { this.sbMsg(false, 'Could not join: ' + ((e && e.message) || 'unknown')); }
+  }
+
+  async sbPush() {
+    if (!this.sbLinked()) return;
+    const c = this.sbCfg(), W = this.myWeek(), d = W.d, T = W.T, me = this.me();
+    try {
+      await this.sbFetch('/rest/v1/days?on_conflict=user_id,day', {
+        method: 'POST', headers: { prefer: 'resolution=merge-duplicates,return=minimal' },
+        body: [{ user_id: c.uid, day: new Date().toISOString().slice(0, 10),
+          kcal: d.n.k, protein: d.n.p, fibre: d.n.fb || 0, fat: d.n.f,
+          meals: d.logged, points: W.todayPts.total,
+          deficit: d.logged > 0 ? Math.max(0, T.target - d.n.k) : 0,
+          protein_pct: Math.round(Math.min(100, d.n.p / Math.max(1, T.protein) * 100)),
+          on_target: d.logged >= 2 && d.n.k > 0 && d.n.k <= T.target,
+          streak: this.state.streak, pct_lost: me.pct,
+          updated_at: new Date().toISOString() }] });
+    } catch(e) {}
+  }
+
+  async sbPull() {
+    if (!this.sbLinked()) return;
+    const c = this.sbCfg();
+    try {
+      const since = new Date(Date.now() - 7 * 864e5).toISOString().slice(0, 10);
+      const profs = await this.sbFetch('/rest/v1/profiles?select=id,handle,hue,squad_code');
+      const rows = await this.sbFetch('/rest/v1/days?select=*&day=gte.' + since);
+      const by = {};
+      (rows || []).forEach(r => { (by[r.user_id] = by[r.user_id] || []).push(r); });
+      const hues = ['#ffb627', '#66ccff', '#b557e6', '#e8493f', '#4a90e2', '#ff7a4d'];
+      const players = (profs || []).filter(p => p.id !== c.uid).map((p, i) => {
+        const rs = (by[p.id] || []).slice().sort((a, b) => a.day < b.day ? -1 : 1);
+        const last = rs[rs.length - 1] || {};
+        const days = [];
+        for (let k = 6; k >= 0; k--) {
+          const key = new Date(Date.now() - k * 864e5).toISOString().slice(0, 10);
+          const hit = rs.filter(x => x.day === key)[0];
+          days.push(hit ? (hit.points || 0) : 0);
+        }
+        const name = p.handle || 'Player';
+        return { id: p.id, name,
+          initials: name.trim().split(/\s+/).map(w => w[0] || '').join('').slice(0, 2).toUpperCase() || 'PL',
+          cons: rs.filter(x => x.on_target).length,
+          def: rs.reduce((a, x) => a + (x.deficit || 0), 0),
+          pro: rs.length ? Math.round(rs.reduce((a, x) => a + (x.protein_pct || 0), 0) / rs.length) : 0,
+          pct: Number(last.pct_lost) || 0, streak: last.streak || 0, delta: 0,
+          hue: p.hue || hues[i % hues.length], days };
+      });
+      const was = this.myRank();
+      this.setState({ sbPlayers: players, sbSyncedAt: Date.now() }, () => {
+        const now = this.myRank();
+        if (now < was) { this.sfx('pass'); this.buzz([12, 30, 12]);
+          this.fire('Up to ' + this.ord(now), 'You passed someone while you were logging.', '▲', this.H.k); }
+      });
+    } catch(e) {}
+  }
+
+  sbBusy(v) { this.setState(st => ({ sb: Object.assign({}, st.sb, { busy: v, msg: v ? null : st.sb.msg }) })); }
+  sbMsg(ok, text) { this.setState(st => ({ sb: Object.assign({}, st.sb, { busy: false, msg: { ok, text } }) })); }
+  sbCanInvite() { return this.sbLinked() && !!String(this.state.sb.code || '').trim(); }
+  sbInvite() {
+    const c = this.sbCfg();
+    // An invite carrying an empty squad code silently isolates both people:
+    // the RLS policies require squad_code <> ''. Never mint one.
+    if (!c.url || !c.key || !String(this.state.sb.code || '').trim()) return '';
+    try { return location.origin + location.pathname + '?join=' +
+      btoa(JSON.stringify({ u: c.url, k: c.key, c: this.state.sb.code || '' })); } catch(e) { return ''; }
+  }
+
+  KEY_STORE = 'pl_v1_apikey';
+  getKey() { try { return localStorage.getItem(this.KEY_STORE) || ''; } catch(e) { return ''; } }
+  setKey(v) { try { v ? localStorage.setItem(this.KEY_STORE, v) : localStorage.removeItem(this.KEY_STORE); } catch(e) {} }
+  maskKey(k) { return k ? k.slice(0, 7) + '…' + k.slice(-4) : ''; }
+
+  async callAnthropic(body, key) {
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        // Anthropic requires this opt-in for calls made straight from a browser.
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: body.model || 'claude-sonnet-4-5',
+        max_tokens: body.max_tokens || 1500,
+        system: body.system,
+        messages: body.messages
+      })
+    });
+    const j = await r.json().catch(() => null);
+    if (!r.ok) {
+      const m = (j && j.error && j.error.message) ? j.error.message : ('HTTP ' + r.status);
+      throw new Error(/authentication|invalid x-api-key|api key is invalid|unauthorized/i.test(m)
+        ? 'That key was rejected. Copy it again — it must start sk-ant- and be copied whole.'
+        : /credit balance|billing/i.test(m) ? 'No credit on this key. Add some at console.anthropic.com → Billing.'
+        : /rate.?limit|429/i.test(m) ? 'Too many requests just now. Wait a moment and try again.'
+        : /failed to fetch|networkerror/i.test(m) ? 'Could not reach Anthropic. Check your connection.'
+        : m.slice(0, 90));
+    }
+    return (j.content || []).map(c => c.text || '').join('').trim();
+  }
+
   async askModel(body) {
     if (typeof window !== 'undefined' && window.claude && window.claude.complete) {
       try { return await window.claude.complete(Object.assign({ model:'claude-sonnet-4-5' }, body)); }
       catch(e) { return await window.claude.complete(body); }
     }
-    const r = await fetch(this.API_URL, {
-      method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body)
-    });
-    const j = await r.json().catch(() => null);
-    if (!r.ok) throw new Error((j && j.error) ? String(j.error).slice(0, 80) : 'endpoint ' + r.status);
-    const txt = j && (j.text || j.completion || j.content);
-    if (!txt) throw new Error('empty reply from /api/vision');
-    return typeof txt === 'string' ? txt : String(txt);
+    // Server route first — there the key never leaves your host. Probe once per session
+    // so a static host does not pay a 404 round-trip on every photo.
+    if (this._apiOk !== false) {
+      try {
+        const r = await fetch(this.API_URL, {
+          method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body)
+        });
+        if (r.ok) {
+          this._apiOk = true;
+          const j = await r.json().catch(() => null);
+          const txt = j && (j.text || j.completion || j.content);
+          if (txt) return typeof txt === 'string' ? txt : String(txt);
+          throw new Error('empty reply from /api/vision');
+        }
+        if (r.status === 404 || r.status === 405) this._apiOk = false;
+        else {
+          const j = await r.json().catch(() => null);
+          if (!this.getKey()) throw new Error((j && j.error) ? String(j.error).slice(0, 80) : 'endpoint ' + r.status);
+          this._apiOk = false;
+        }
+      } catch (e) {
+        if (this._apiOk === true) throw e;
+        this._apiOk = false;
+      }
+    }
+    const key = this.getKey();
+    if (!key) throw new Error('no AI key set — add one in Me › AI key');
+    return this.callAnthropic(body, key);
   }
   async runVision(fullUrl) {
     const note = (this.state.log.note||'').trim();
@@ -3971,6 +4944,7 @@ class Component extends DCLogic {
   celebrate(big) {
     this.setState({ confetti: big ? 'win' : 'small' });
     this.buzz(big ? [18,40,18] : 30);
+    this.sfx(big ? 'fanfare' : 'win');
     this.later(()=>this.setState({ confetti:false }), big ? 3400 : 2600);
   }
   fire(head, sub, icon, hue) {
@@ -4011,7 +4985,8 @@ class Component extends DCLogic {
     const S = this.state, H = this.H, T = this.targets(), d = this.today(), W = this.myWeek();
     const pts = W.todayPts, me = this.me(), rank = this.myRank(), ranked = this.ranked();
     const promo = this.props.promotionSlots || 3, releg = this.props.relegationSlots || 2;
-    const pct = (a,b)=>Math.max(0, Math.min(100, Math.round(a/b*100)))+'%';
+    const pct = (a,b)=>{ const n = (!b || !isFinite(b)) ? 0 : Math.round(a/b*100);
+      return Math.max(0, Math.min(100, isFinite(n) ? n : 0))+'%'; };
     const on = S.screen;
 
     // ---- onboarding ----
@@ -4031,7 +5006,7 @@ class Component extends DCLogic {
 
     // ---- board rows ----
     const rows = ranked.map((x,i) => {
-      const zone = i < promo ? H.k : (i >= ranked.length-releg ? H.red : H.blue);
+      const zone = ranked.length <= releg + 1 ? H.blue : (i < promo ? H.k : (i >= ranked.length-releg ? H.red : H.blue));
       const top = this.metricOf(ranked[0], S.metric) || 1;
       const isMe = x.id === 'me';
       return { rank:i+1, name:isMe?'You':x.name, initials:x.initials, streak:x.streak, open:S.openRow===x.id,
@@ -4051,7 +5026,8 @@ class Component extends DCLogic {
           { name:'Protein', val:x.pro+'%', color:H.p, w:pct(x.pro,100) },
           { name:'Weight lost', val:x.pct.toFixed(1)+'%', color:H.f, w:pct(x.pct,4) } ] };
     });
-    const rival = S.players[0];
+    const solo = this.livePlayers().length === 0;
+    const rival = this.livePlayers()[0] || { name:'—', initials:'—', days:[0,0,0,0,0,0,0], hue:this.H.dim };
     const myDays = me.days, theirDays = rival.days;
     const mySum = myDays.reduce((a,b)=>a+b,0), theirSum = theirDays.reduce((a,b)=>a+b,0);
     const dayMax = Math.max.apply(null, myDays.concat(theirDays)) || 1;
@@ -4080,8 +5056,8 @@ class Component extends DCLogic {
 
     const doSave = () => {
       // An itemless or zero-calorie plate is not data — refuse it rather than store a ghost.
-      if (!L.items.length) { this.fire('Nothing to log', 'Add at least one item, or close without logging.', '!', H.gold); return; }
-      if (ln.k <= 0) { this.fire('Zero calories', 'Set a calorie figure on at least one item first.', '!', H.gold); return; }
+      if (!L.items.length) { this.sfx('nope'); this.fire('Nothing to log', 'Add at least one item, or close without logging.', '!', H.gold); return; }
+      if (ln.k <= 0) { this.sfx('nope'); this.fire('Zero calories', 'Set a calorie figure on at least one item first.', '!', H.gold); return; }
       const meal = { id:'m'+Date.now(), ts:Date.now(), dish:L.dish||'Logged plate', items:L.items,
         note:L.note, leftover:L.leftover, photo:L.photo, conf:L.conf, engine:L.engine };
       const meals = S.meals.concat([meal]);
@@ -4096,9 +5072,12 @@ class Component extends DCLogic {
       this.setState({ meals, screen:'home', confetti: won.length ? 'win' : 'small',
         log:{ step:'capture', photo:null, after:null, note:'', dish:'', items:[], baseItems:null, override:null, conf:'medium', engine:'', leftover:0, listening:false, err:null, phase:0 } },
         () => { this.persist({ meals }); this.buzz(30);
-          this.top(); });
-      if (won.length) { this.fire(won[0].n, won[0].s, '🏆', H.gold); this.buzz([18,40,18]); }
-      else this.fire('+'+Math.max(0,after-before)+' points', meal.dish+' · '+nn.k+' kcal logged', '+', H.k);
+          this.top(); this.sbPush(); });
+      if (won.length) { this.fire(won[0].n, won[0].s, '🏆', H.gold); this.buzz([18,40,18]); this.sfx('fanfare'); }
+      else { this.fire('+'+Math.max(0,after-before)+' points', meal.dish+' · '+nn.k+' kcal logged', '+', H.k);
+        // Clearing the day's target is the real win; a plain plate is just a plate.
+        const clears = (d.n.k + nn.k) <= T.target && (d.logged + 1) >= 2;
+        this.sfx(clears ? 'win' : 'log'); }
       this.later(()=>this.setState({ confetti:false }), won.length ? 3400 : 2600);
     };
 
@@ -4155,7 +5134,111 @@ class Component extends DCLogic {
       // routing
       isOnboard: on==='onboard' || !S.onboarded, isHome: on==='home' && S.onboarded, isLog: on==='log', isBoard: on==='board',
       isSquad: on==='squad', isMe: on==='me', isHistory: on==='history', isRecap: on==='recap',
-      isConvert: on==='convert', isWatch: on==='watch',
+      isConvert: on==='convert', isHk: on==='hk', isKey: on==='apikey', isSquadSetup: on==='squadsetup', solo,
+      // Every week-facing label reads from here, so two of them can never disagree.
+      season: (() => {
+        const now = new Date();
+        const end = new Date(now); // Sunday 23:59 of the current week
+        end.setDate(now.getDate() + ((7 - now.getDay()) % 7)); end.setHours(23, 59, 0, 0);
+        if (end <= now) end.setDate(end.getDate() + 7);
+        const ms = end - now, d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5);
+        return {
+          closes: d > 0 ? d + 'd ' + String(h).padStart(2, '0') + 'h' : h + 'h',
+          sub: 'Resets Sunday 23:59 · top ' + promo + ' promote, bottom ' + releg + ' drop',
+          rules: 'Weekly reset · top ' + promo + ' promote, bottom ' + releg + ' drop'
+        };
+      })(),
+      sq: (() => {
+        const B = S.sb, cfg = this.sbCfg();
+        const linked = this.sbLinked(), hasProject = this.sbHasProject();
+        const n = (S.sbPlayers || []).length;
+        const set = (k) => (e) => { const v = e.target.value;
+          this.setState(st => ({ sb: Object.assign({}, st.sb, { [k]: v, msg: null }) })); };
+        return {
+          linked, notLinked: !linked, hasProject, needsProject: !hasProject,
+          awaitingLink: hasProject && !linked,
+          statusText: linked ? 'Signed in as ' + (cfg.email || 'you')
+            : hasProject ? 'Project connected — sign in next' : 'Not connected yet',
+          statusColor: linked ? H.k : hasProject ? H.gold : H.dim,
+          squadText: linked ? (B.code ? 'Squad ' + B.code + ' · ' + (n + 1) + (n === 0 ? ' member' : ' members')
+            : 'No squad code yet') : '',
+          hasSquad: linked && !!B.code,
+          url: B.url, key: B.key, email: B.email, code: B.code, handle: B.handle,
+          onUrl: set('url'), onKey: set('key'), onEmail: set('email'),
+          onCode: set('code'), onHandle: set('handle'),
+          saveProject: () => { const u = (B.url || '').trim().replace(/\/+$/, ''), k = (B.key || '').trim();
+            if (!/^https:\/\/.+\.supabase\.co$/.test(u)) { this.sbMsg(false, 'The URL should look like https://abcdefg.supabase.co'); return; }
+            if (k.length < 30) { this.sbMsg(false, 'That anon key looks too short.'); return; }
+            this.sbSave({ url: u, key: k });
+            this.sbMsg(true, 'Project saved. Now sign in with your email.'); },
+          sendLink: () => this.sbSendLink(),
+          sending: B.busy, sendLabel: B.busy ? 'Sending…' : (B.sent ? 'Send another link' : 'Email me a sign-in link'),
+          joinSquad: () => this.sbJoin(B.code),
+          saveHandle: () => this.sbJoin(B.code, true),
+          syncNow: () => { this.sbPush(); this.sbPull();
+            this.fire('Syncing', 'Pushing your day and pulling the squad.', '↻', H.p); },
+          invite: this.sbInvite(),
+          canInvite: this.sbCanInvite(),
+          inviteBtn: this.sbCanInvite() ? 'Copy the invite link' : 'Pick a squad code first',
+          inviteBg: this.sbCanInvite() ? 'linear-gradient(180deg,#5aa0f0,#3a76c4)' : 'rgba(255,255,255,.07)',
+          inviteFg: this.sbCanInvite() ? '#04101f' : '#6c7d94',
+          inviteCursor: this.sbCanInvite() ? 'pointer' : 'not-allowed',
+          copyInvite: () => { const u = this.sbCanInvite() ? this.sbInvite() : '';
+            u ? this.copyText(u, 'Invite link copied')
+              : this.sbMsg(false, 'Choose a squad code above first — an invite without one puts you on separate boards.'); },
+          signOut: () => { this.sbSave({ token: '', uid: '' });
+            this.setState({ sbPlayers: [], sbUid: null,
+              sb: Object.assign({}, S.sb, { sent: false, msg: null }) });
+            this.fire('Signed out', 'Your logs stay on this device.', '⚿', H.dim); },
+          disconnect: () => { this.sbWipe();
+            this.setState({ sbPlayers: [], sbUid: null,
+              sb: { url:'', key:'', email:'', code:'', handle:'', busy:false, msg:null, sent:false } });
+            this.fire('Disconnected', 'Back to a private, on-device app.', '✓', H.dim); },
+          hasMsg: !!B.msg, msg: B.msg ? B.msg.text : '',
+          msgColor: B.msg ? (B.msg.ok ? H.k : H.red) : H.dim,
+          synced: S.sbSyncedAt ? 'Updated ' + this.ago(Math.max(1, Math.round((Date.now() - S.sbSyncedAt) / 60000))) : 'Not synced yet',
+          memberCount: n === 0 ? 'Nobody else yet' : n + (n === 1 ? ' teammate on the board' : ' teammates on the board')
+        };
+      })(),
+      apikey: (() => {
+        const saved = S.keyMask, draft = S.keyDraft || '';
+        const valid = this.KEY_SHAPE.test(draft.trim());
+        const blocked = !valid || !!S.keyTesting;
+        return {
+          saved: !!saved, none: !saved, mask: saved || '',
+          draft, valid,
+          statusText: saved ? 'A key is saved in this browser' : 'No key on this device yet',
+          statusColor: saved ? H.k : H.red,
+          onInput: (e) => this.setState({ keyDraft: e.target.value, keyTest: null }),
+          canSave: !blocked, blocked, saveCursor: blocked ? 'not-allowed' : 'pointer',
+          saveBg: (valid && !S.keyTesting) ? 'linear-gradient(180deg,#4ad06c,#2ba14c)' : 'rgba(255,255,255,.07)',
+          saveFg: (valid && !S.keyTesting) ? '#04160a' : this.H.dim2,
+          saveLabel: S.keyTesting ? 'Checking the key…'
+            : (draft.trim() && !valid ? 'That does not look like a key' : 'Test and save'),
+          save: () => this.testAndSaveKey(),
+          remove: () => { this.setKey(''); this._apiOk = undefined;
+            this.setState({ keyMask:'', keyDraft:'', keyTest:null });
+            this.fire('Key removed', 'Photo analysis is off until you add one.', '⚿', H.dim); },
+          result: S.keyTest ? S.keyTest.msg : '',
+          resultColor: S.keyTest ? (S.keyTest.ok ? H.k : H.red) : H.dim,
+          hasResult: !!S.keyTest
+        };
+      })(),
+      showZones: ranked.length > releg + 1,
+      hkSteps: [
+        { n:'1', head:'Open the Shortcuts app', body:'It is already on your iPhone. Tap + to make a new one.' },
+        { n:'2', head:'Add "Find All Health Samples Where"', body:'Set it to Active Energy, today. Repeat for Exercise Minutes, Steps and Resting Energy.' },
+        { n:'3', head:'Add "Text" and build the link', body:'Paste the link below, then drop each Health result in place of the example numbers.' },
+        { n:'4', head:'Add "Open URLs"', body:'Point it at that Text. Running the Shortcut now opens this app with your figures.' },
+        { n:'5', head:'Automate it', body:'Shortcuts → Automation → Time of Day → 9pm → run this. From then on it is hands-off.' }
+      ],
+      hkFields: [
+        { key:'move', label:'Move', hint:'active kcal today', ph:'520', value:(S.hkManual||{}).move||'', set:(e)=>this.hkSet('move', e) },
+        { key:'exercise', label:'Exercise', hint:'minutes today', ph:'34', value:(S.hkManual||{}).exercise||'', set:(e)=>this.hkSet('exercise', e) },
+        { key:'stand', label:'Stand', hint:'hours today', ph:'9', value:(S.hkManual||{}).stand||'', set:(e)=>this.hkSet('stand', e) },
+        { key:'steps', label:'Steps', hint:'today', ph:'8412', value:(S.hkManual||{}).steps||'', set:(e)=>this.hkSet('steps', e) },
+        { key:'resting', label:'Resting energy', hint:'kcal today', ph:'1680', value:(S.hkManual||{}).resting||'', set:(e)=>this.hkSet('resting', e) }
+      ], isWatch: on==='watch',
       // Companion panel: on a laptop or iPad the league sits beside the day instead of
       // leaving half the screen empty. Hidden during onboarding and the camera flow,
       // which are single-task by design.
@@ -4164,7 +5247,7 @@ class Component extends DCLogic {
         closes: 'closes ' + (7 - new Date().getDay() || 7) + 'd',
         rows: ranked.map((x, i) => {
           const isMe = x.id === 'me';
-          const zone = i < promo ? H.k : (i >= ranked.length - releg ? H.red : H.blue);
+          const zone = ranked.length <= releg + 1 ? H.blue : (i < promo ? H.k : (i >= ranked.length - releg ? H.red : H.blue));
           // One rule for photo-vs-initials, same as the Today header: a usable photo
           // blanks the initials, otherwise they stand in. Only "me" can have a photo.
           const av = isMe ? this.cssBg(S.prof.avatar) : null;
@@ -4178,11 +5261,11 @@ class Component extends DCLogic {
             nameColor: isMe ? this.H.ink : this.H.ink3,
             valColor: isMe ? H.k : this.H.ink2 };
         }),
-        feed: S.feed.map(f => ({ glyph: f.glyph, text: f.text, when: f.when, avBg: f.hue }))
+        feed: (solo ? [] : S.feed).map(f => ({ glyph: f.glyph, text: f.text, when: f.when, avBg: f.hue }))
       }, isCoach: on==='coach', isWorkouts: on==='workouts',
       goCoach: () => this.goto('coach'),
       showNav: on!=='onboard' && on!=='log' && S.onboarded
-        && !S.assistOpen && !S.share.open && !S.voiceOpen && !S.profileOpen && !S.news && !S.sheetId && !S.timerOpen && !S.exPickerOpen && !S.plan.open,
+        && !S.assistOpen && !S.share.open && !S.voiceOpen && !S.profileOpen && !S.news && !S.sheetId && !S.timerOpen && !S.exPickerOpen && !S.pu.on && !S.plan.open,
       goHome: ()=>this.goto('home'), goBoard: ()=>this.goto('board'),
       goHistory: ()=>this.goto('history'), goRecap: ()=>this.goto('recap'),
       goConvert: ()=>this.goto('convert'),
@@ -4287,15 +5370,18 @@ class Component extends DCLogic {
       health: (() => {
         const Hh = S.health, ring = (v,g) => Math.round(Math.min(1, v/g)*100);
         if (!Hh.connected) return { off:true, on:false, rings:[], tiles:[], workouts:[],
-          ctaHead: Hh.linking ? 'Asking Health for permission…' : 'Link Apple Watch & Health',
-          ctaSub: Hh.linking ? 'Approve move, exercise and workout data' : 'Read your real burn instead of guessing an activity level' };
+          ctaHead: 'Connect Apple Watch & Health',
+          ctaSub: 'Real move, exercise and workout figures — takes five minutes once' };
         const circ = r => 2*Math.PI*r;
         const rd = [ { name:'Move', r:84, v:Hh.move, g:Hh.moveGoal, color:this.H.ringMove, text:Hh.move+' / '+Hh.moveGoal+' kcal' },
           { name:'Exercise', r:64, v:Hh.exercise, g:Hh.exerciseGoal, color:this.H.ringEx, text:Hh.exercise+' / '+Hh.exerciseGoal+' min' },
           { name:'Stand', r:44, v:Hh.stand, g:Hh.standGoal, color:this.H.ringStand, text:Hh.stand+' / '+Hh.standGoal+' hr' } ];
         const mins = Math.max(1, Math.round((Date.now()-Hh.syncedAt)/60000));
-        return { off:false, on:true, source:Hh.source, real:!!Hh.real,
-          synced: (Hh.real ? 'imported ' : 'demo · ') + this.ago(mins),
+        const fresh = this.healthFresh();
+        return { off:false, on:true, fresh, stale: !fresh,
+          source: fresh ? Hh.source : Hh.source + ' · stale',
+          real:!!Hh.real,
+          synced: (Hh.real ? 'imported ' : 'demo · ') + this.ago(mins) + (fresh ? '' : ' · not counted'),
           rings: rd.map((x,i) => ({ r:x.r, color:x.color, name:x.name, text:x.text,
             dur: (1.0+i*0.16).toFixed(2)+'s',
             dash: Math.round(Math.min(1, x.v/x.g)*circ(x.r))+' '+Math.ceil(circ(x.r)) })),
@@ -4314,16 +5400,55 @@ class Component extends DCLogic {
               this.setState(s=>{ const ws = s.health.workouts.slice();
                 ws[i] = Object.assign({}, ws[i], { kcal:v });
                 return { health: Object.assign({}, s.health, { workouts:ws }) }; }, ()=>this.persist()); } })),
-          eatBackShort: Hh.eatBack===0 ? 'Not eating training back' : 'Eating back '+Hh.eatBack+'% · +'+T.credit+' kcal',
-          eatBackText: Hh.eatBack===0 ? 'Training calories are not eaten back, so your deficit stays whole. Safest setting if the scale is not moving.'
+          eatBackShort: !this.healthFresh() ? 'Import is stale · nothing credited'
+            : (Hh.eatBack===0 ? 'Not eating training back' : 'Eating back '+Hh.eatBack+'% · +'+T.credit+' kcal'),
+          eatBackText: !this.healthFresh()
+            ? 'Your last import was ' + this.ago(Math.max(2, Math.round((Date.now()-(Hh.syncedAt||Date.now()))/60000))) + ', so none of it is being credited to today. Re-import and this setting takes effect again.'
+            : Hh.eatBack===0 ? 'Training calories are not eaten back, so your deficit stays whole. Safest setting if the scale is not moving.'
             : 'Eating back '+Hh.eatBack+'% of today’s '+this.earned()+' kcal of training raises your target by '+T.credit+'. Watches overread active burn by 20-40% on non-cardio work, so 50% is the honest default.',
           eatBackPct: Hh.eatBack+'%' };
       })(),
-      connectHealth: () => { if (S.health.linking) return;
-        this.setState(s => ({ health: Object.assign({}, s.health, { linking:true }) }));
-        this.later(() => this.setState(s => ({ health: Object.assign({}, s.health, { linking:false, connected:true, syncedAt:Date.now() }) }),
-          () => this.persist()), 1400);
-        this.later(() => this.fire('Apple Health linked', 'Move, exercise and workouts now feed your target.', '◍', this.H.orange), 1500); },
+      // No fake link. This opens the real setup: a Shortcut on the user's phone reads
+      // Health and calls back with the figures.
+      connectHealth: () => this.goto('hk'),
+      // Only a linked board can produce a working invite. Unlinked, the honest
+      // action is to go build the board, not to copy a link that leads nowhere.
+      sfxPass: () => this.sfx('pass'),
+      shareApp: () => { const u = this.sbCanInvite() ? this.sbInvite() : '';
+        if (u) { this.copyText(u, 'Invite link copied'); return; }
+        this.goto('squadsetup'); },
+      inviteLabel: this.sbCanInvite() ? 'Copy the invite link'
+        : (this.sbLinked() ? 'Pick a squad code first' : 'Set up the shared board'),
+      inviteNote: this.sbCanInvite()
+        ? 'The link carries the connection and your squad code — they just add their email.'
+        : (this.sbLinked()
+          ? 'You are signed in but have no squad code yet. Pick one in Me → Shared squad — that code is what puts you all on one table.'
+          : 'Right now this app is private to your device. Set up the shared board and everyone lands on one table.'),
+      hk: (() => {
+        const base = (typeof location !== 'undefined')
+          ? location.origin + location.pathname : 'https://your-app.vercel.app/';
+        const sample = base + '?move=520&exercise=34&stand=9&steps=8412&resting=1680'
+          + '&workout=Outdoor%20run|26|148|312';
+        return {
+          base, sample,
+          copyBase: () => this.copyText(base, 'App address copied'),
+          copySample: () => this.copyText(sample, 'Example link copied'),
+          tryIt: () => { try { location.href = sample; } catch(e) {} },
+          canSave: ['move','exercise','stand','steps','resting'].some(k => (S.hkManual||{})[k]),
+          saveBg: ['move','exercise','stand','steps','resting'].some(k => (S.hkManual||{})[k]) ? 'linear-gradient(180deg,#ff8f63,#d1501f)' : 'rgba(255,255,255,.07)',
+          saveFg: ['move','exercise','stand','steps','resting'].some(k => (S.hkManual||{})[k]) ? '#1a0c05' : '#6c7d94',
+          saveLabel: ['move','exercise','stand','steps','resting'].some(k => (S.hkManual||{})[k]) ? 'Save my figures' : 'Enter at least one number',
+          save: () => { const m = S.hkManual || {};
+            const n = (k) => m[k] === '' || m[k] == null ? null : Math.max(0, Math.round(Number(m[k])));
+            this.setState(st => ({ health: Object.assign({}, st.health, {
+              connected:true, real:true, source:'Apple Watch · typed in', linking:false,
+              move: n('move') ?? st.health.move, exercise: n('exercise') ?? st.health.exercise,
+              stand: n('stand') ?? st.health.stand, steps: n('steps') ?? st.health.steps,
+              resting: n('resting') ?? st.health.resting, syncedAt: Date.now() }) }),
+              () => { this.persist(); this.goto('me');
+                this.fire('Figures saved', 'Your own numbers, not a demo.', '⌚', this.H.orange); }); }
+        };
+      })(),
       cycleEatBack: () => { const o = [0,50,75,100]; const nx = o[(o.indexOf(S.health.eatBack)+1)%o.length];
         this.setState(s => ({ health: Object.assign({}, s.health, { eatBack:nx }) }), ()=>this.persist()); },
 
@@ -4363,6 +5488,8 @@ class Component extends DCLogic {
             { label: T.credit>0 ? 'Daily target (incl. move credit)' : 'Daily target',
               value:T.target.toLocaleString()+' kcal', color:this.H.ink3, labelColor:this.H.ink4 } ];
           if (T.credit>0) rows.push({ label:'Earned back from training', value:'+'+T.credit.toLocaleString()+' kcal', color:this.H.orange, labelColor:this.H.orange });
+          else if (!this.healthFresh() && (S.health.workouts||[]).length)
+            rows.push({ label:'Training credit (stale import)', value:'not applied', color:this.H.dim, labelColor:this.H.dim });
           return rows;
         })(),
         mealCount: S.meals.length+(S.meals.length===1?' plate':' plates') },
@@ -4394,7 +5521,9 @@ class Component extends DCLogic {
         { name:'Protein', val:pts.pr+'/40', color:H.p, w:pct(pts.pr,40) } ] },
       rankCard: { rank:this.ord(rank), bg: rank<=3 ? 'linear-gradient(160deg,#ffb627,#c77f0b)' : 'linear-gradient(160deg,#e8493f,#8f251e)',
         head: rank===1 ? 'You are leading Silver League' : ranked[0].name+' is '+(this.composite(ranked[0])-this.composite(me))+' points clear',
-        sub: rank>ranked.length-releg ? 'Relegation zone. Two days to fix it.' : 'Tap for the full table and the four metrics' },
+        sub: (ranked.length > releg + 1 && rank > ranked.length - releg)
+          ? 'Relegation zone. Two days to fix it.'
+          : (solo ? 'Invite your squad and this table gets interesting' : 'Tap for the full table and the four metrics') },
       todayMeals: sorted.filter(m => new Date(m.ts).toDateString()===new Date().toDateString()).map(mealRow),
 
       // log
@@ -4507,15 +5636,18 @@ class Component extends DCLogic {
         .map(c => ({ label:c.label, border: S.metric===c.id ? 'rgba(74,144,226,.6)' : 'rgba(255,255,255,.12)',
           bg: S.metric===c.id ? 'rgba(74,144,226,.18)' : 'rgba(20,29,43,.7)', fg: S.metric===c.id ? this.H.blueTint : this.H.ink4,
           pick: ()=>this.setState({ metric:c.id }, ()=>this.persist({ metric:c.id })) })),
-      rows: S.boardTab==='friends' ? rows.filter(r => ['You','Kai R.','Mara L.','Sam K.'].indexOf(r.name)>=0) : rows,
-      duel: { myInitials:S.prof.initials, name:rival.name, initials:rival.initials,
+      rows: (S.boardTab==='friends' && !solo) ? rows.filter(r => ['You','Kai R.','Mara L.','Sam K.'].indexOf(r.name)>=0) : rows,
+      duel: { real: !solo, none: solo,
+        myInitials:S.prof.initials, name:rival.name, initials:rival.initials,
         mine:mySum.toLocaleString(), theirs:theirSum.toLocaleString(), share: pct(mySum, mySum+theirSum),
-        verdict: mySum>=theirSum ? 'You are '+(mySum-theirSum)+' points up. Do not blink.' : 'Down '+(theirSum-mySum)+' points. Two clean days closes it.',
-        winning: mySum>=theirSum,
+        verdict: solo ? 'No rival yet. Invite someone and this becomes a fight.'
+          : (mySum>=theirSum ? 'You are '+(mySum-theirSum)+' points up. Do not blink.' : 'Down '+(theirSum-mySum)+' points. Two clean days closes it.'),
+        winning: !solo && mySum>=theirSum,
         days: ['M','T','W','T','F','S','S'].map((lbl,i) => ({ label:lbl, mineH: Math.round(myDays[i]/dayMax*88)+'px', theirH: Math.round(theirDays[i]/dayMax*88)+'px' })),
         taunts: [ { label:'“Catching you.”' }, { label:'“Log it or forfeit.”' }, { label:'“Nice deficit. Mine’s bigger.”' } ]
           .map(t => ({ label:t.label, send: ()=>this.fire('Sent to '+rival.name, t.label, '👊', H.red) })) },
-      claimDuel: () => { this.setState(s => ({ wins:(s.wins||0)+1 }), ()=>this.persist());
+      claimDuel: () => { if (solo) return;
+        this.setState(s => ({ wins:(s.wins||0)+1 }), ()=>this.persist());
         this.celebrate(true); this.fire('Duel won', 'You beat '+rival.name+' by '+(mySum-theirSum)+' points.', '⚔', H.gold); },
       wall: ranked.slice().sort((a,b)=>b.streak-a.streak).map((x,i) => { const isMe = x.id==='me';
         return { name: isMe?'You':x.name, initials:x.initials, streak:x.streak,
@@ -4527,13 +5659,24 @@ class Component extends DCLogic {
           tagColor: x.streak===0 ? H.red : (i===0 ? H.gold : H.dim) }; }),
 
       // squad
-      squad: { code:'TEN-4417', done:7, pct:'70%',
+      squad: { code:'TEN-4417',
+        done: solo ? (me.cons>=4 ? 1 : 0) : 7, pct: solo ? (me.cons>=4 ? '100%' : '0%') : '70%',
+        solo,
+        title: solo ? 'Your squad' : 'The Ten',
+        sub: this.sbLinked()
+          ? (S.sb.code ? 'Squad ' + S.sb.code + ' · live' : 'Signed in · pick a squad code in Me → Shared squad')
+          : (solo ? 'Just you · set up the shared board in Me → Shared squad' : 'Demo squad · not shared yet'),
+        chTitle: solo ? 'Protein floor, four days running' : 'Protein floor, ten for ten',
+        chBody: solo
+          ? 'Hit your protein target four days out of seven. On your own the only opponent is last week — beat that and the badge is yours.'
+          : 'Every member hits their protein target four days running. One person short and nobody gets the badge.',
+        of: solo ? 'of 1 on track' : 'of 10 on track',
         members: ranked.map(x => { const isMe = x.id==='me'; const top = this.composite(ranked[0])||1;
           return { name:isMe?'You':x.name, initials:x.initials, avBg:'linear-gradient(160deg,'+x.hue+',rgba(0,0,0,.35))',
             nameColor: isMe ? this.H.ink : this.H.ink2, color: isMe ? H.k : H.p,
             val:this.composite(x).toLocaleString(), w: pct(this.composite(x), top),
             nudge: ()=>this.fire('Nudge sent', (isMe?'Nudging yourself. Bold.':x.name+' just got a poke.'), '👊', H.gold) }; }),
-        feed: S.feed.map(f => ({ glyph:f.glyph, text:f.text, when:f.when, avBg:f.hue })) },
+        feed: (solo ? [] : S.feed).map(f => ({ glyph:f.glyph, text:f.text, when:f.when, avBg:f.hue })) },
 
       // me
       me: { name:S.prof.name, initials:S.prof.initials,
@@ -4544,7 +5687,9 @@ class Component extends DCLogic {
         avatarLabel: (S.prof.name && S.prof.name !== 'You' ? S.prof.name : 'Your profile') + ' — edit name and photo',
         sub: 'Silver League · '+this.ord(rank)+' of '+ranked.length+' · '+S.streak+'-day streak',
         weightLabel: S.prof.w.toFixed(1)+' kg',
-        stats: [ { name:'Lost', val:(S.prof.start-S.prof.w).toFixed(1)+'kg', sub:me.pct.toFixed(1)+'% of body weight', color:H.k },
+        stats: [ (() => { const dlt = S.prof.start - S.prof.w; const up = dlt < -0.05;
+            return { name: up ? 'Gained' : 'Lost', val: Math.abs(dlt).toFixed(1) + 'kg',
+              sub: Math.abs(me.pct).toFixed(1) + '% of body weight', color: up ? H.red : H.k }; })(),
           { name:'To goal', val:(S.prof.w-S.prof.goal).toFixed(1)+'kg', sub:'~'+fWeeks+' weeks left', color:H.p },
           { name: S.health.connected ? 'Burned' : 'Plate Score',
             val: S.health.connected ? (S.health.resting+S.health.move).toLocaleString() : this.composite(me).toLocaleString(),
@@ -4561,12 +5706,32 @@ class Component extends DCLogic {
           { label:'Daily calorie target', value:T.target.toLocaleString(), color:H.k, act:()=>this.setState({ screen:'onboard', ob:{ step:1 } }) },
           { label:'Protein floor', value:T.protein+'g', color:H.p, act:()=>this.setState({ screen:'onboard', ob:{ step:1 } }) },
           { label:'Freeze tokens', value:S.freezes+' left', color:H.c, act:()=>this.fire('Freeze token', 'Spend one to protect your streak on a day you cannot log.', '❄', H.c) },
-          { label:'Apple Watch & Health', value: S.health.connected ? (S.health.real ? 'Shortcuts' : 'Demo data') : 'Not linked',
-            color: S.health.connected ? (S.health.real ? this.H.orange : H.dim) : H.dim,
-            act:()=>{ if (S.health.connected) { this.setState(s=>({ health:Object.assign({}, s.health, { connected:false }) }), ()=>this.persist());
-                this.fire('Health unlinked', 'Back to an estimated activity level.', '◍', H.dim); }
-              else { this.setState(s=>({ health:Object.assign({}, s.health, { connected:true, syncedAt:Date.now() }) }), ()=>this.persist());
-                this.fire('Apple Health linked', 'Move, exercise and workouts now feed your target.', '◍', this.H.orange); } } },
+          { label:'Sound effects', value: S.sfx === false ? 'Off' : 'Arcade',
+            color: S.sfx === false ? H.dim : this.H.f,
+            act:()=>{ const nx = S.sfx === false; this.setState({ sfx:nx }, ()=>this.persist({ sfx:nx }));
+              if (nx) { this.later(()=>this.sfx('win'), 60);
+                this.fire('Sound on', 'Wins make a noise. Ordinary taps stay silent.', '🔊', this.H.f); }
+              else this.fire('Sound off', 'Haptics still work.', '🔇', H.dim); } },
+          { label:'Demo rivals', value: S.demo === false ? 'Off · just you' : 'On · 9 examples',
+            color: S.demo === false ? H.k : H.dim,
+            act:()=>{ const nx = S.demo === false; this.setState({ demo:nx }, ()=>this.persist({ demo:nx }));
+              this.fire(nx ? 'Demo rivals back' : 'Table cleared',
+                nx ? 'Nine examples on the board again.' : 'Just you now. Invite your squad to fill it.',
+                nx ? '◍' : '✓', nx ? H.dim : H.k); } },
+          { label:'Apple Watch & Health', value: S.health.connected ? (S.health.source||'Linked') : 'Set up',
+            color: S.health.connected ? this.H.orange : H.dim,
+            act:()=>this.goto('hk') },
+          { label:'Unlink Health', value: S.health.connected ? 'Clear figures' : '—',
+            color: S.health.connected ? H.red : H.dim,
+            act:()=>{ if (!S.health.connected) return;
+              this.setState(s=>({ health:Object.assign({}, s.health, { connected:false, real:false }) }), ()=>this.persist());
+              this.fire('Health unlinked', 'Back to an estimated activity level.', '◍', H.dim); } },
+          { label:'Shared squad',
+            value: this.sbLinked() ? ((S.sb.code || 'no code') + ' · live') : (this.sbHasProject() ? 'Sign in' : 'Set up'),
+            color: this.sbLinked() ? H.k : H.dim, act:()=>this.goto('squadsetup') },
+          { label:'AI key (for photo analysis)',
+            value: S.keyMask ? 'Saved on this device' : 'Not set',
+            color: S.keyMask ? H.k : H.red, act:()=>this.goto('apikey') },
           { label:'Eat back training calories', value:S.health.eatBack+'%', color:this.H.orange,
             act:()=>{ const o=[0,50,75,100]; const nx=o[(o.indexOf(S.health.eatBack)+1)%o.length];
               this.setState(s=>({ health:Object.assign({}, s.health, { eatBack:nx }) }), ()=>this.persist()); } },
@@ -4913,7 +6078,7 @@ class Component extends DCLogic {
           return { day: today ? 'Today' : (yest ? 'Yesterday' : dt.toLocaleDateString(undefined,{ weekday:'long', day:'numeric', month:'short' })),
             total: ws.reduce((a,w)=>a+w.kcal,0).toLocaleString()+' kcal · '+ws.reduce((a,w)=>a+w.mins,0)+' min',
             items: ws.slice().sort((a,b)=>b.ts-a.ts).map(w => ({ name:w.name, glyph:w.glyph,
-              meta: w.mins+' min · '+new Date(w.ts).toLocaleTimeString(undefined,{ hour:'2-digit', minute:'2-digit' }),
+              meta: (w.reps ? w.reps+' reps · ' : '')+w.mins+' min · '+new Date(w.ts).toLocaleTimeString(undefined,{ hour:'2-digit', minute:'2-digit' }),
               kcal:'+'+w.kcal })) };
         });
         const totals = {};
@@ -4938,6 +6103,51 @@ class Component extends DCLogic {
         if (!t.startedAt && !ms) return { on:false, off:true, text:'' };
         const shown = t.mode === 'down' ? Math.max(0, t.targetMs - ms) : ms;
         return { on:true, off:false, text: this.fmtClock(shown) }; })(),
+      // push-up counter
+      puVideoRef: this.puVideoRef || (this.puVideoRef = React.createRef()),
+      puCanvasRef: this.puCanvasRef || (this.puCanvasRef = React.createRef()),
+      pu: (() => {
+        const p = S.pu, live = p.phase === 'live', done = p.phase === 'done';
+        const kg = (S.prof.w || 80).toFixed(0);
+        const STATUS = {
+          noBody:     { text:'I cannot see your arm. Move back until shoulder, elbow and hand are all in frame.', hue:H.gold },
+          notPlank:   { text:'Get into plank — hands on the floor under your shoulders.', hue:H.gold },
+          straighten: { text:'Arms straight to lock on.', hue:H.p },
+          up:         { text: p.reps ? 'Counting. Chest down, then all the way up.' : 'Locked on. Go.', hue:H.k },
+          down:       { text:'Down. Now push all the way up.', hue:H.k } };
+        const st = STATUS[p.status] || STATUS.noBody;
+        return {
+          on: p.on, isLive: live, isDone: done, isCover: !live,
+          isIdle: p.phase === 'idle', isLoading: p.phase === 'loading', isError: p.phase === 'error',
+          canStart: p.phase === 'idle' || p.phase === 'error',
+          showOptions: p.phase === 'idle' || p.phase === 'error',
+          startLabel: p.phase === 'error' ? 'Try again' : '▶ Start camera',
+          sub: live ? 'Counting out loud — you do not need to watch the screen' : 'Runs on this phone. No video is saved or sent.',
+          reps: String(p.reps),
+          kcal: p.kcal >= 10 ? String(Math.round(p.kcal)) : p.kcal.toFixed(1),
+          saveKcal: String(Math.max(1, Math.round(p.kcal))),   // what puSave() will actually log
+          clock: this.fmtClock(p.startedAt ? (p.endedAt || Date.now()) - p.startedAt : 0),
+          statusText: st.text, statusHue: st.hue,
+          frame: live ? st.hue : 'rgba(255,255,255,.1)',
+          mirror: p.facing === 'user' ? 'scaleX(-1)' : 'none',
+          err: p.err,
+          note: 'Calories are an estimate from your weight (' + kg + ' kg) and your pace — about '
+            + this.puRepKcal(2).kcal.toFixed(2) + ' kcal a rep at one every 2 seconds. Rest between sets is not counted. '
+            + 'Push-ups build muscle; they do not burn much — twenty is about ' + Math.round(this.puRepKcal(2).kcal * 20) + ' kcal.',
+          steps: [
+            { n:'1', text:'Prop the phone on the floor, 2 metres away, leaning on a wall or a bottle.' },
+            { n:'2', text:'Go side-on to it, or at an angle. It must see your shoulder, elbow and hand the whole way down.' },
+            { n:'3', text:'Hold plank with straight arms until you hear "Go". Every full rep is counted out loud.' } ],
+          flipLabel: p.facing === 'user' ? '🔄 Use back camera' : '🔄 Use front camera',
+          voiceLabel: p.voice ? '🔊 Count aloud: on' : '🔇 Count aloud: off',
+          open: () => this.puOpen(), close: () => this.puClose(),
+          start: () => this.puStart(), finish: () => this.puFinish(),
+          save: () => this.puSave(), discard: () => { this.puStopCamera(); this.puSet({ on:false, phase:'idle' }); },
+          less: () => this.puAdjust(-1), more: () => this.puAdjust(1),
+          flip: () => this.puSet({ facing: p.facing === 'user' ? 'environment' : 'user' }),
+          toggleVoice: () => this.puSet({ voice: !p.voice })
+        };
+      })(),
       openTimer: () => this.setState({ timerOpen:true, hint:false }),
       closeTimer: () => this.setState({ timerOpen:false }),
       timer: (() => {
